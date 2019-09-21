@@ -11,9 +11,6 @@ const compression = require('compression');
 
 // 2. INITIALIZATION
 const app = express();
-
-const jsonParser = express.json();
-
 const logPath = fs.createWriteStream(path.join(__dirname + '/logs/access.log'), {flags: 'a'});
 
 
@@ -21,20 +18,16 @@ const logPath = fs.createWriteStream(path.join(__dirname + '/logs/access.log'), 
 const port = 9090;
 
 app.set('env', 'development');
-
 app.disable('x-powered-by');
-
 app.set('trust proxy', true);
 
 
 // 4. MIDDLEWARE
 app.use(morgan('dev', {stream: logPath}));
-
 app.use(compression());
-
-app.use(jsonParser);
-
 app.use(cors());
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 
 // 5. ROUTING
