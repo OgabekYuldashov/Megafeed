@@ -8,5 +8,7 @@ if (environment.production) {
   enableProdMode();
 }
 
+declare var tinymce: any;
+
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));

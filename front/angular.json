@@ -32,7 +32,23 @@
               "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["./node_modules/jquery/dist/jquery.min.js",
+              "src/assets/js/jquery.form.js",
+
+              "./node_modules/tinymce/tinymce.js",
+
+              "./node_modules/tinymce/themes/silver/theme.js",
+
+              "./node_modules/tinymce/plugins/link/plugin.js",
+
+              "./node_modules/tinymce/plugins/paste/plugin.js",
+
+              "./node_modules/tinymce/plugins/table/plugin.js",
+
+              "./node_modules/tinymce/plugins/image/plugin.js",
+
+              "./node_modules/tinymce/plugins/imagetools/plugin.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -92,13 +108,20 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              { "glob": "**/*", "input": "./node_modules/tinymce/skins", "output": "/skins/" },
+              { "glob": "**/*", "input": "./node_modules/tinymce/plugins", "output": "/plugins/" },
+              { "glob": "**/*", "input": "./node_modules/tinymce/themes", "output": "/themes/" }
             ],
             "styles": [
               "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/styles/prism.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/tinymce/tinymce.min.js",
+              "src/assets/js/prism.js"
+            ]
           }
         },
         "lint": {
