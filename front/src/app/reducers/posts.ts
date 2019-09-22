@@ -1,12 +1,19 @@
 import { PostPreviewModel } from '../models/postPreview.model';
 import * as PostPrevewAction from '../actions/postPreview';
+import { CategoryModel } from '../models/category.model';
 
 export interface PostsState {
-    data: PostPreviewModel[];
+    posts: PostPreviewModel[];
+    categories: CategoryModel[]
 };
 
 const initialState: PostsState = {
-    data: []
+    posts: [],
+    categories: [
+        {alias: '', title: 'Stories', description: 'All the best stories from MUM'},
+        {alias: 'tech', title: 'TECH', description: 'Technology and fun facts'},
+        {alias: 'art', title: 'ART', description: 'The most interesting in arts'},
+    ]
 };
 
 export function reducer(state = initialState, action): PostsState {
@@ -21,5 +28,5 @@ export function reducer(state = initialState, action): PostsState {
 }
 
 function addPostPreview(state: PostsState, posts: PostPreviewModel[]): PostsState {
-    return Object.assign({}, state, { data: posts });
+    return Object.assign({}, state, { categories: state.categories,  posts: posts });
 }

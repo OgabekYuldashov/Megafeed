@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CategoryModel } from 'src/app/models/category.model';
+import { postsStore } from 'src/app/store';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class LayoutComponent {
   title = 'front';
+
+  public categories: CategoryModel[];
+
+  constructor(){
+    this.categories = postsStore.getState().categories;
+  }
 }
