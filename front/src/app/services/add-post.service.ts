@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Post } from '../../models/post.model';
+import { PostModel } from '../models/post.model';
 
 @Injectable()
 export class AddPostService {
@@ -9,21 +9,21 @@ export class AddPostService {
 
   }
 
-  addPost(post: Post) {
-    return this.http.post('http://localhost:9090/api/v1/post/', {
+  addPost(post: PostModel) {
+    return this.http.post('http://localhost:9090/api/v1/post/createPost', {
       title : post.title,
       description : post.description,
-      imageUrl: post.imageUrl,
+   //   imageUrl: post.imageUrl,
       keywords: post.keywords
     });
   }
 
-  updatePost(post: Post) {
-    return this.http.post('http://localhost:9090/api/v1/post/', {
+  updatePost(post: PostModel) {
+    return this.http.post('/api/v1/post/updatePost', {
       id: post._id,
       title : post.title,
       description : post.description,
-      imageUrl: post.imageUrl,
+ //     imageUrl: post.imageUrl,
       keywords: post.keywords
     });
   }

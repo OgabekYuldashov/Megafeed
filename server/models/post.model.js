@@ -1,37 +1,50 @@
-// interface PostModel {
-//     title: string;
-//     description: string;
-//     imageUrl: string;
-//     postDate: Date;
-//     user: {
-//         imageUrl: string;
-//         name: string;
-
-//     }
-// }
-
 function newPost(
-    id,
+    _id,
     title,
     description,
+    shortDescription,
     imageUrl,
     postDate,
-    userImageUrl,
-    userName) {
+    authorImageUrl,
+    authorName) {
     const post = {
-        id: id,
+        _id: _id,
         title: title,
         description: description,
+        shortDescription: shortDescription,
         imageUrl: imageUrl,
         postDate: postDate,
-        user: {
-            imageUrl: userImageUrl,
-            name: userName
+        author: {
+            imageUrl: authorImageUrl,
+            name: authorName
+        }
+    }
+    return post;
+}
+
+function newPostPreview(
+    _id,
+    title,
+    shortDescription,
+    imageUrl,
+    postDate,
+    authorImageUrl,
+    authorName) {
+    const post = {
+        _id: _id,
+        title: title,
+        shortDescription: shortDescription,
+        imageUrl: imageUrl,
+        postDate: postDate,
+        author: {
+            imageUrl: authorImageUrl,
+            name: authorName
         }
     }
     return post;
 }
 
 module.exports = {
-    newPost
+    newPost,
+    newPostPreview
 }
