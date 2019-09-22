@@ -1,50 +1,120 @@
-// app.js
+const express = require('express')
+const bodyParser = require('body-parser')
+const app = express()
+const mongoose = require('mongoose');
+const  config = require('./config')
+const url = config.dburl;
 
-// 1. DEPENDENCIES
-const express = require('express');
+const User = require('./model/user');
+const Post = require('./model/post');
 const cors = require('cors');
-const fs = require('fs');
-const path = require('path');
-const morgan = require('morgan');
-const compression = require('compression');
 
-
-// 2. INITIALIZATION
-const app = express();
-
-const jsonParser = express.json();
-
-const logPath = fs.createWriteStream(path.join(__dirname + '/logs/access.log'), {flags: 'a'});
-
-
-// 3. CONFIGURATION
-const port = 9090;
-
-app.set('env', 'development');
-
-app.disable('x-powered-by');
-
-app.set('trust proxy', true);
-
-
-// 4. MIDDLEWARE
-app.use(morgan('dev', {stream: logPath}));
-
-app.use(compression());
-
-app.use(jsonParser);
-
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended : false}))
 app.use(cors());
 
+app.post('/api/user/login', (req, res) => {
+    mongoose.connect(url,{ useMongoClient: true }, function(err){
+        if(err) throw err;
+        User.find({
+            username : req.body.username, password : req.body.password
+        }, function(err, user){
+            if(err) throw err;
+            if(user.length === 1){
+                return res.status(200).json({
+                    status: 'success',
+                    data: user
+                })
+            } else {
+                return res.status(200).json({
+                    status: 'fail',
+                    message: 'Login Failed'
+                })
+            }
 
-// 5. ROUTING
-app.use('/api', require('./routes/versionRoute.js'));
+        })
+    });
+})
 
+app.post('/api/user/create', (req, res) => {
+    mongoose.connect(url, function(err){
+        if(err) throw err;
+        const user = new User({
+            name: req.body.name,
+            username: req.body.username,
+            password: req.body.password
+        })
+        user.save((err, res) => {
+            if(err) throw err;
+            return res.status(200).json({
+                status: 'success',
+                data: res
+            })
+        })
+    });
+})
 
-// 6. ERROR HANDLING
+app.post('/api/post/createPost', (req, res) => {
+    mongoose.connect(url, { useMongoClient: true }, function(err){
+        if(err) throw err;
+        const post = new Post({
+            title: req.body.title,
+            description: req.body.description,
+            imageUrl: req.body.imageUrl,
+            keywords: req.body.keywords
+        })
+        post.save((err, doc) => {
+            if(err) throw err;
+            return res.status(200).json({
+                status: 'success',
+                data: doc
+            })
+        })
+    });
+})
 
+app.post('/api/post/updatePost', (req, res) => {
+    mongoose.connect(url, { useMongoClient: true }, function(err){
+        if(err) throw err;
+        Post.update(
+            {_id: req.body.id },
+            { title : req.body.title, description:
+                req.body.description, imageUrl: req.body.imageUrl, keywords: req.body.keywords},
+            (err, doc) => {
+                if(err) throw err;
+                return res.status(200).json({
+                    status: 'success',
+                    data: doc
+                })
+            })
+    });
+})
 
-// 7. BOOTUP
-app.listen(port, function(){
-    console.log('Application is listening to Port: %s', port);
-});
+app.post('/api/post/getAllPost', (req, res) => {
+    mongoose.connect(url, { useMongoClient: true } , function(err){
+        if(err) throw err;
+        Post.find({},[],{ sort: { _id: -1 } },(err, doc) => {
+            if(err) throw err;
+            return res.status(200).json({
+                status: 'success',
+                data: doc
+            })
+        })
+    });
+})
+
+app.post('/api/post/deletePost', (req, res) => {
+    mongoose.connect(url, { useMongoClient: true }, function(err){
+        if(err) throw err;
+        Post.findByIdAndRemove(req.body.id,
+            (err, doc) => {
+                if(err) throw err;
+                return res.status(200).json({
+                    status: 'success',
+                    data: doc
+                })
+            })
+    });
+})
+
+app.listen(3000, () => console.log('Blog server running on port 3000!'))

@@ -13,7 +13,7 @@ export class AddPostService {
     return this.http.post('/api/post/createPost', {
       title : post.title,
       description : post.description,
-      imageUrl: post.imageUrl,
+   //   imageUrl: post.imageUrl,
       keywords: post.keywords
     });
   }
@@ -23,7 +23,7 @@ export class AddPostService {
       id: post._id,
       title : post.title,
       description : post.description,
-      imageUrl: post.imageUrl,
+ //     imageUrl: post.imageUrl,
       keywords: post.keywords
     });
   }

@@ -12,12 +12,14 @@ import en from '@angular/common/locales/en';
 import { CommonService } from './service/common.service';
 import { EditorModule} from '@tinymce/tinymce-angular';
 import {AddPostModule} from './add-post/add-post.module';
+import { ShowPostComponent } from './show-post/show-post.component';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     LayoutComponent,
+    ShowPostComponent,
   ],
   imports: [
     BrowserModule,
