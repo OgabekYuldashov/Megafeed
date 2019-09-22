@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { AddPostService } from './add-post.service';
-import { Post } from '../../models/post.model';
+import { PostModel } from '../../models/post.model';
 import { Router } from '@angular/router';
 import { CommonService } from '../../service/common.service';
 
@@ -18,10 +18,10 @@ export class AddPostComponent implements OnInit {
 
   // @ts-ignore
   @ViewChild('closeBtn') closeBtn: ElementRef;
-  public post: Post;
+  public post: PostModel;
 
   constructor(private addPostService: AddPostService, private router: Router, private commonService: CommonService) {
-    this.post = new Post();
+    this.post = new PostModel();
     this.post.imageUrl = this.avatarUrl;
   }
 

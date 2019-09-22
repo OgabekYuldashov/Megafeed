@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { Post } from '../models/post.model';
+import { PostModel } from '../models/post.model';
 
 @Injectable()
 export class CommonService {
@@ -13,14 +13,14 @@ export class CommonService {
   public post_to_be_edited;
 
   constructor() {
-    this.post_to_be_edited = new Post();
+    this.post_to_be_edited = new PostModel();
   }
 
   notifyPostEdit() {
     this.postEdit_Observable.next();
   }
 
-  setPostToEdit(post: Post) {
+  setPostToEdit(post: PostModel) {
     this.post_to_be_edited = post;
     this.notifyPostEdit();
   }

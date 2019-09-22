@@ -1,12 +1,12 @@
 export interface PostPreviewModel {
-    id: number;
+    _id: string;
     title: string;
-    description: string;
+    shortDescription: string;
     imageUrl: string;
+    keywords: string;
     postDate: Date;
-    user: {
+    author: {
         imageUrl: string;
         name: string;
-
     }
 }
