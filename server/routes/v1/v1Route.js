@@ -9,7 +9,10 @@ const router = express.Router({caseSensitive: false, strict: false});
 
 
 // 3. ROUTES
-router.use('/v1', require('./v1/v1Route.js'));
+router.use('/posts', require('./postsRoute.js'));
+
+router.use('/users', require('./usersRoute.js'));
+
 
 
 module.exports = router;
