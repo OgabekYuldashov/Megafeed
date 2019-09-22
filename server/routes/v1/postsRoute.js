@@ -90,6 +90,7 @@ router.get('/', function (req, res, next) {
         "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
         "https://miro.medium.com/max/9493/0*P6Z0xJth0kwOCmQS",
         new Date(2019, 9, 21),
+        '1',
         "https://miro.medium.com/fit/c/96/96/1*s6u1XbfyAVPitXa6kg6q2Q.jpeg",
         "Matt Ward"
     ));
@@ -99,6 +100,7 @@ router.get('/', function (req, res, next) {
         "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
         "https://miro.medium.com/max/1259/1*Kw2DpnES_9BRkqtJhYxVRQ.jpeg",
         new Date(2019, 9, 12),
+        '120',
         "https://miro.medium.com/fit/c/96/96/1*s6u1XbfyAVPitXa6kg6q2Q.jpeg",
         "Matt Ward"
     ));
@@ -108,6 +110,7 @@ router.get('/', function (req, res, next) {
         "The ultimate 3500-word guide in plain English to understand Blockchain.",
         "https://miro.medium.com/max/2560/1*dcRQxEbvbfPa1ESsylcDng.png",
         new Date(2019, 7, 15),
+        '506',
         "https://miro.medium.com/fit/c/48/48/1*ym4RMZcO4-oRioChi11yaQ.jpeg",
         "Mohit Mamoria"
     ));

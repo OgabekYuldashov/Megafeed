@@ -8,6 +8,7 @@ export class PostModel {
     this.imageUrl = '';
 
     this.author = {
+      _id: '',
       imageUrl: '',
       name: ''
     };
@@ -20,6 +21,7 @@ export class PostModel {
   public imageUrl;
 
   public author: {
+    _id: string;
     imageUrl: string;
     name: string;
   };
