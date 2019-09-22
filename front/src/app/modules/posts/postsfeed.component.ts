@@ -13,7 +13,7 @@ import { PostsService } from 'src/app/services/posts.service';
 })
 export class PostsfeedComponent implements OnInit {
   public posts: PostPreviewModel[];
-  unsubscribe;
+  private unsubscribe;
   public categoryTitle: string;
   public categoryDescription: string;
 

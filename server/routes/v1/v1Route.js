@@ -4,15 +4,9 @@
 const express = require('express');
 const router = express.Router({caseSensitive: false, strict: false});
 
-
-// 2. MIDDLEWARE
-
-
 // 3. ROUTES
-router.use('/posts', require('./postsRoute.js'));
-
-router.use('/users', require('./usersRoute.js'));
-
-
+router.use('/posts', require('./postsRoute'));
+router.use('/bookmarks', require('./bookmarksRoute'));
+router.use('/users', require('./usersRoute'));
 
 module.exports = router;
