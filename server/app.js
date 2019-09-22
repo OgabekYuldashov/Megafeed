@@ -3,8 +3,6 @@ const mongoose = require('mongoose');
 const  config = require('./config');
 const url = config.dburl;
 
-const User = require('./model/user');
-const Post = require('./model/post');
 const cors = require('cors');
 
 const fs = require('fs');
