@@ -24,6 +24,14 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['user', 'signin']">Sign in</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" #addPost [routerLink]="['', 'add-post']">Add post</a>
+        </li>
+<!--        <li class="nav-item">-->
+<!--          <button #addPost [routerLink]="['', 'add-post']" type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">-->
+<!--            Add Post-->
+<!--          </button>-->
+<!--        </li>-->
       </ul>
       <!-- End Menu -->
       <!-- Begin Search -->
@@ -39,12 +47,14 @@
     </div>
   </div>
 </nav>
+
+<!--<main role="main">-->
+
+<!--  <app-add-post></app-add-post>-->
+
+<!--</main>-->
+
 <!-- End Nav
 ================================================== -->
-<main role="main">
-
-  <app-add-post></app-add-post>
-
-</main>
 
 <router-outlet></router-outlet>

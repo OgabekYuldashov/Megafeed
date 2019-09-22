@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -22,7 +22,7 @@
     "@tinymce/tinymce-angular": "^3.3.0",
     "bower": "^1.8.8",
     "jquery": "^3.4.1",
-    "ng-zorro-antd": "^8.1.2",
+    "ng-zorro-antd": "^8.3.0",
     "rxjs": "~6.4.0",
     "rxjs-compat": "^6.5.3",
     "tinymce": "^5.0.15",
