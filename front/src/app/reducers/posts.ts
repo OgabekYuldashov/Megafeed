@@ -4,8 +4,8 @@ import { CategoryModel } from '../models/category.model';
 
 export interface PostsState {
     posts: PostPreviewModel[];
-    categories: CategoryModel[]
-};
+    categories: CategoryModel[];
+}
 
 const initialState: PostsState = {
     posts: [],

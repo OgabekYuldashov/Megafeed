@@ -12,7 +12,7 @@ import { CommonService } from './service/common.service';
 import { EditorModule} from '@tinymce/tinymce-angular';
 import {AddPostModule} from './add-post/add-post.module';
 import { ShowPostComponent } from './show-post/show-post.component';
-import {en_US, NZ_I18N} from 'ng-zorro-antd';
+import {en_US, NZ_I18N, NgZorroAntdModule} from 'ng-zorro-antd';
 
 registerLocaleData(en);
 
@@ -28,7 +28,8 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     EditorModule,
-    AddPostModule
+    AddPostModule,
+    NgZorroAntdModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US },
     CommonService],
