@@ -1,10 +1,10 @@
-// v1Route.js
+// postsRoute.js
 
 // 1. DEPENDENCIES
 const express = require('express');
-const router = express.Router({ caseSensitive: false, strict: false });
+const router = express.Router({caseSensitive: false, strict: false});
 
-const PostModel = require('./../models/post.model');
+const PostModel = require('../../models/post.model');
 
 
 // 2. MIDDLEWARE
@@ -12,77 +12,76 @@ const PostModel = require('./../models/post.model');
 
 // 3. ROUTES
 
-router.get('', function (req, res, next) {
-    res
-        .status(200)
-        .json({ message: 'hello' })
-});
-
-
-router.post('/post/createPost', (req, res) => {
-    mongoose.connect(url, { useMongoClient: true }, function(err){
-        if(err) throw err;
+//POST '/'
+router.post('/createPost', (req, res) => {
+    mongoose.connect(url, {useMongoClient: true}, function (err) {
+        if (err) throw err;
         const post = new Post({
             title: req.body.title,
             description: req.body.description,
             imageUrl: req.body.imageUrl,
             keywords: req.body.keywords
-        })
+        });
         post.save((err, doc) => {
-            if(err) throw err;
+            if (err) throw err;
             return res.status(200).json({
                 status: 'success',
                 data: doc
             })
         })
     });
-})
+});
 
-router.post('/post/updatePost', (req, res) => {
-    mongoose.connect(url, { useMongoClient: true }, function(err){
-        if(err) throw err;
+//PATCH '/'
+router.post('/updatePost', (req, res) => {
+    mongoose.connect(url, {useMongoClient: true}, function (err) {
+        if (err) throw err;
         Post.update(
-            {_id: req.body.id },
-            { title : req.body.title, description:
-                req.body.description, imageUrl: req.body.imageUrl, keywords: req.body.keywords},
+            {_id: req.body.id},
+            {
+                title: req.body.title, description:
+                req.body.description, imageUrl: req.body.imageUrl, keywords: req.body.keywords
+            },
             (err, doc) => {
-                if(err) throw err;
+                if (err) throw err;
                 return res.status(200).json({
                     status: 'success',
                     data: doc
                 })
             })
     });
-})
+});
 
-router.post('/post/getAllPost', (req, res) => {
-    mongoose.connect(url, { useMongoClient: true } , function(err){
-        if(err) throw err;
-        Post.find({},[],{ sort: { _id: -1 } },(err, doc) => {
-            if(err) throw err;
+//GET '/:uid'
+router.post('/getAllPost', (req, res) => {
+    mongoose.connect(url, {useMongoClient: true}, function (err) {
+        if (err) throw err;
+        Post.find({}, [], {sort: {_id: -1}}, (err, doc) => {
+            if (err) throw err;
             return res.status(200).json({
                 status: 'success',
                 data: doc
             })
         })
     });
-})
+});
 
-router.post('/post/deletePost', (req, res) => {
-    mongoose.connect(url, { useMongoClient: true }, function(err){
-        if(err) throw err;
+//DELETE '/:pid'
+router.post('/deletePost', (req, res) => {
+    mongoose.connect(url, {useMongoClient: true}, function (err) {
+        if (err) throw err;
         Post.findByIdAndRemove(req.body.id,
             (err, doc) => {
-                if(err) throw err;
+                if (err) throw err;
                 return res.status(200).json({
                     status: 'success',
                     data: doc
                 })
             })
     });
-})
+});
 
-router.get('/posts', function (req, res, next) {
+router.get('/', function (req, res, next) {
     // console.log("Category: " + req.query.category);
     posts = [];
     posts.push(PostModel.newPost(
@@ -114,7 +113,7 @@ router.get('/posts', function (req, res, next) {
     ));
 
     res.json(posts);
-})
+});
 
 module.exports = router;
 

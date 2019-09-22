@@ -1,6 +1,6 @@
-const express = require('express')
+const express = require('express');
 const mongoose = require('mongoose');
-const  config = require('./config')
+const  config = require('./config');
 const url = config.dburl;
 
 const User = require('./model/user');
@@ -30,11 +30,11 @@ app.set('trust proxy', true);
 app.use(morgan('dev', {stream: logPath}));
 app.use(compression());
 app.use(cors());
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/api', require('./routes/versionRoute'));
 
 
 
-app.listen(port, () => console.log('Blog server running on port 9090!'))
+app.listen(port, () => console.log('Blog server running on port 9090!'));
