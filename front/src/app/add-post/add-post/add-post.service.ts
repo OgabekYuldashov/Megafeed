@@ -10,7 +10,7 @@ export class AddPostService {
   }
 
   addPost(post: Post) {
-    return this.http.post('/api/post/createPost', {
+    return this.http.post('http://localhost:9090/api/v1/post/createPost', {
       title : post.title,
       description : post.description,
    //   imageUrl: post.imageUrl,
@@ -19,7 +19,7 @@ export class AddPostService {
   }
 
   updatePost(post: Post) {
-    return this.http.post('/api/post/updatePost', {
+    return this.http.post('/api/v1/post/updatePost', {
       id: post._id,
       title : post.title,
       description : post.description,

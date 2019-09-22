@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SigninComponent } from './signin/signin.component';
+import { SigninComponent } from './signin.component';
 import { RouterModule } from '@angular/router';
 
 
@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: 'signin', component: SigninComponent }
+      { path: 'signin', component: SigninComponent },
     ])
   ]
 })
