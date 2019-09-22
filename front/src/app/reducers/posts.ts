@@ -1,6 +1,6 @@
-import { PostPreviewModel } from '../models/postPreview.model';
 import * as PostPrevewAction from '../actions/postPreview';
 import { CategoryModel } from '../models/category.model';
+import { PostPreviewModel } from '../models/postPreview.model';
 
 export interface PostsState {
     posts: PostPreviewModel[];
