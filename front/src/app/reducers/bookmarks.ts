@@ -1,5 +1,6 @@
 import { BookmarkModel } from '../models/bookmark.model';
 import * as bookmarksActions from '../actions/bookmarks.actions';
+import { getMatScrollStrategyAlreadyAttachedError } from '@angular/cdk/overlay/typings/scroll/scroll-strategy';
 
 export interface BookmarksState {
     bookmarks: BookmarkModel[];
@@ -11,7 +12,7 @@ const initialState: BookmarksState = {
 
 export function reducer(state = initialState, action): BookmarksState {
     switch (action.type) {
-        case bookmarksActions.LOAD: {
+        case bookmarksActions.ADD: {
             return Add(state, action.payload);
         }
         case bookmarksActions.LOAD: {

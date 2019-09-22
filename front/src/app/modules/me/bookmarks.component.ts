@@ -12,19 +12,22 @@ export class BookmarksComponent implements OnInit {
   public bookmarks: BookmarkModel[];
   private unsubscribe;
 
-  constructor(private bookmarksService: BookmarksService) { 
+  constructor(private bookmarksService: BookmarksService) {
     this.bookmarksService.getOnlineData();
   }
 
   ngOnInit() {
     this.bookmarks = bookmarksStore.getState().bookmarks;
     this.unsubscribe = bookmarksStore.subscribe(() => {
-      console.log(bookmarksStore.getState().bookmarks);
       this.bookmarks = bookmarksStore.getState().bookmarks;
     })
   }
 
   ngOnDestroy() {
     this.unsubscribe();
+  }
+
+  addNewBookmark() {
+    this.bookmarksService.saveBookmark();
   }
 }

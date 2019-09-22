@@ -3,9 +3,9 @@ import { BookmarkModel } from '../models/bookmark.model';
 export const ADD = '[bookmarks] Add';
 export const LOAD = '[bookmarks] Load';
 
-export function addBookmarks(newBookmark: BookmarkModel) {
+export function addBookmark(newBookmark: BookmarkModel) {
     return {
-        type: LOAD,
+        type: ADD,
         payload: newBookmark
     }
 }
