@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: 'signin', component: SigninComponent }
+      { path: 'signin', component: SigninComponent },
     ])
   ]
 })

@@ -1,9 +1,31 @@
-<p>
-    postsfeed for category: {{category}}
-</p>
+<div class="container">
+    <div class="mainheading">
+        <h1 class="sitetitle">{{category}}</h1>
+        <p class="lead">
+            Category description
+        </p>
+    </div>
 
-<ul>
-    <li *ngFor="let post of posts">
-        {{post.title}}
-    </li>
-</ul>
+    <section class="featured-posts">
+        <div class="section-title">
+            <h2><span>Featured</span></h2>
+        </div>
+        <div class="card-columns listfeaturedtag">
+
+            <app-list-post-featured [post]="post" *ngFor="let post of posts">
+            </app-list-post-featured>
+        </div>
+    </section>
+
+    <section class="recent-posts">
+        <div class="section-title">
+            <h2><span>All Stories</span></h2>
+        </div>
+        <div class="row card-columns listrecent">
+            <div class="col-4" *ngFor="let post of posts">
+                <app-list-post [post]="post">
+                </app-list-post>
+            </div>
+        </div>
+    </section>
+</div>
