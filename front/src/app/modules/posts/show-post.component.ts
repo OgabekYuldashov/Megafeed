@@ -14,7 +14,7 @@ import { ViewChild} from '@angular/core';
 export class ShowPostComponent implements OnInit {
 
   // @ts-ignore
-  @ViewChild('closeBtn') closeBtn: ElementRef;
+  // @ViewChild('closeBtn') closeBtn: ElementRef;
 
   public posts: any [];
   // tslint:disable-next-line:variable-name
@@ -54,7 +54,7 @@ export class ShowPostComponent implements OnInit {
   deletePost() {
     this.showPostService.deletePost(this.post_to_delete._id).subscribe(res => {
       this.getAllPost();
-      this.closeBtn.nativeElement.click();
+      // this.closeBtn.nativeElement.click();
     });
   }
 

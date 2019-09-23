@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 // create a schema
 const postModel = new Schema({
-    title: { type: String, required: true },
+    title: { type: String, required: false },
     shortDescription: { type: String, required: false },
-    description: { type: String, required: true },
+    description: { type: String, required: false },
     imageUrl: { type: String, required: false },
     keywords: { type: String, required: false },
     author: {

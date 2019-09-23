@@ -4,7 +4,6 @@
 const express = require('express');
 const router = express.Router({ caseSensitive: false, strict: false });
 const url = require('../../config').dburl;
-//const url = 'mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb';
 const Post = require('../../schemes/post.model');
 const mongoose = require('mongoose');
 
@@ -16,16 +15,16 @@ const mongoose = require('mongoose');
 
 //POST '/'  add post
 router.post('/', (req, res) => {
-    mongoose.connect(url, { useMongoClient: true }, function (err) {
+    mongoose.connect(url, { useMongoClient: true, useUnifiedTopology: true }, function (err) {
         if (err) throw err;
         const post = new Post({
             title: req.body.title,
             shortDescription: req.body.shortDescription,
             description: req.body.description,
-            //imageUrl: req.body.imageUrl,
+            imageUrl: req.body.imageUrl,
             keywords: req.body.keywords,
-            // author: {imageUrl: req.body.author.imageUrl,
-            //     name: req.body.author.name}
+            author: {imageUrl: req.body.author.imageUrl,
+                name: req.body.author.name}
         });
         post.save((err, doc) => {
             if (err) throw err;
@@ -87,7 +86,7 @@ router.delete('/:pid', (req, res) => {
 });
 
 //Get all post
-router.post('/', (req, res) => {
+router.post('/all-post', (req, res) => {
     mongoose.connect(url, { useMongoClient: true } , function(err){
         if(err) throw err;
         Post.find({},[],{ sort: { _id: -1 } },(err, doc) => {

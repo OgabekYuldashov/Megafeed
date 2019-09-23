@@ -9,7 +9,7 @@ export class ShowPostService {
   }
 
   getAllPost() {
-     return this.http.post('http://localhost:9090/api/v1/posts/', {});
+     return this.http.post('http://localhost:9090/api/v1/posts/all-post', {});
    // return this.http.post('/posts/getAllPost', {});
   }
 
