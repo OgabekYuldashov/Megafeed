@@ -2,7 +2,6 @@
 
 // 1. DEPENDENCIES
 const express = require('express');
-const mongoose = require('mongoose');
 const router = express.Router({caseSensitive: false, strict: false});
 const bcrypt = require('bcrypt');
 const util = require('util');
@@ -10,7 +9,7 @@ const hash = util.promisify(bcrypt.hash);
 
 const User = require('./../../schemes/user.schema');
 
-const {dburl, SECRET_KEY, saltRounds} = require('./../../config');
+const {SECRET_KEY, saltRounds} = require('./../../config');
 
 // 2. MIDDLEWARE
 const bodyParser = require('body-parser');
@@ -18,7 +17,10 @@ const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 
 router.use(bodyParser.json());
-router.use(expressJwt({secret: SECRET_KEY}).unless({path: ['/api/v1/users/signup', '/api/v1/users/signin']}));
+router.use(expressJwt({secret: SECRET_KEY}).unless({path: [
+        '/api/v1/users/signup',
+        '/api/v1/users/signin',
+        '/api/v1/users/validate_email']}));
 
 // 3. ROUTES
 /************************ START PUBLIC ENDPOINTS *************************/
@@ -27,7 +29,7 @@ router.post('/signup', (req, res, next) => {
         next();
     },
     validateFields,
-    async function (req, res, next) {
+    async function (req, res) {
         try {
             let jsonBody = req.body;
 
@@ -44,8 +46,7 @@ router.post('/signup', (req, res, next) => {
                 password: jsonBody.password
             });
             // save the user
-            const output = await newUser.save();
-            // console.log(output);
+            await newUser.save();
 
             const token = jwt.sign(jsonBody, SECRET_KEY, {expiresIn: '24h'});
             res
@@ -65,7 +66,7 @@ router.post('/signin', (req, res, next) => {
         next();
     },
     validateFields,
-    async (req, res, next) => {
+    async (req, res) => {
         try {
             const jsonBody = req.body;
 
@@ -90,27 +91,31 @@ router.post('/signin', (req, res, next) => {
         }
     });
 
-router.post('/validate_email', async (req, res, next) => {
-    const jsonBody = req.body;
+router.post('/validate_email', async (req, res) => {
+    try {
+        const jsonBody = req.body;
 
-    if (!('email' in jsonBody)) {
-        return res
-            .status(400)
-            .json({error: true, message: 'Invalid JSON Body', data: {}})
+        if (!('email' in jsonBody)) {
+            return res
+                .status(400)
+                .json({error: true, message: 'Invalid JSON Body', data: {}})
+        }
+
+        res.status(200).json({error: false, message: '', data: {exists: await userExists(jsonBody.email)}});
+
+    } catch (e) {
+        console.log(e);
+        res
+            .status(501)
+            .json({error: true, message: 'Internal Error', data: {}});
     }
-
-    const output = await users.findOne({'email': jsonBody.email});
-
-    res.status(200).json({error: false, message: '', data: {exists: output !== null}});
 });
 /************************ END PUBLIC ENDPOINTS *************************/
 
 
-router.get('', function (req, res, next) {
-    res
-        .status(200)
-        .json({message: 'hello'})
-});
+
+
+
 
 function validateFields(req, res, next) {
     let jsonBody = req.body;
