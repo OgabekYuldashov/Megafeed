@@ -36,7 +36,7 @@ import {ShowPostComponent} from './show-post.component';
       { path: ':category', component: PostsfeedComponent },
       { path: 'posts/add-post', component: AddPostComponent },
       { path: 'posts/show-post', component: ShowPostComponent },
-      { path: 'post/:_id', component: SinglePostViewComponent },
+      { path: 'posts/:_id', component: SinglePostViewComponent },
     ])
   ],
   providers: [

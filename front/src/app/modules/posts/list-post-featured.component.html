@@ -1,13 +1,13 @@
 <div class="card">
     <div class="row">
         <div class="col-md-5 wrapthumbnail">
-            <a [routerLink]="['post', post._id]">
+            <a [routerLink]="['posts', post._id]">
                 <div class="thumbnail" [ngStyle]="{background: 'url(' + post.imageUrl +  ')', overflow: 'hidden', backgroundSize: 'cover', backgroundPosition: 'cover'}"></div>
             </a>
         </div>
         <div class="col-md-7">
             <div class="card-block">
-                <h2 class="card-title"><a [routerLink]="['post', post._id]">{{post.title}}</a></h2>
+                <h2 class="card-title"><a [routerLink]="['posts', post._id]">{{post.title}}</a></h2>
                 <h4 class="card-text">{{post.shortDescription}}</h4>
                 <div class="metafooter">
                     <div class="wrapfooter">

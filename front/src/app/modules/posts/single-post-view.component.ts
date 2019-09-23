@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-single-post-view',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class SinglePostViewComponent implements OnInit {
+  public postId;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { 
+    this.postId = this.route.snapshot.params._id;
+
+    
+  }
 
   ngOnInit() {
   }

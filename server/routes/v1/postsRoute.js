@@ -86,18 +86,9 @@ router.delete('/:pid', (req, res) => {
 });
 
 //Get all post
-router.get('/', (req, res) => {
-    console.log('getting')
-    mongoose.connect(url, { useMongoClient: true } , function(err){
-        if(err) throw err;
-        Post.find({},[],{ sort: { _id: -1 } },(err, doc) => {
-            if(err) throw err;
-            return res.status(200).json({
-                status: 'success',
-                data: doc
-            })
-        })
-    });
+router.get('/', async (req, res) =>  {
+    posts = await Post.find({}, '-description', { sort: { _id: -1 } });
+    return res.status(200).json(posts);
 })
 
 

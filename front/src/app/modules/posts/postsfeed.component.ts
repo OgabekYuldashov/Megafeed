@@ -26,7 +26,7 @@ export class PostsfeedComponent implements OnInit, OnDestroy {
       this.categoryTitle = category.title;
       this.categoryDescription = category.description;
 
-      this.postsService.getOnlineData(categoryAlias);
+      this.postsService.getPostsFeed(categoryAlias);
     });
   }
 
