@@ -46,9 +46,9 @@ router.post('/signup', (req, res, next) => {
                 password: jsonBody.password
             });
             // save the user
-            await newUser.save();
+            let result = await newUser.save();
 
-            const token = jwt.sign(jsonBody, SECRET_KEY, {expiresIn: '24h'});
+            const token = jwt.sign({'_id': result._id, 'email': result.email}, SECRET_KEY, {expiresIn: '24h'});
             res
                 .status(201)
                 .json({error: false, message: 'Record Created', data: {token: token}});
@@ -104,6 +104,7 @@ router.post('/validate_email', async (req, res) => {
         res.status(200).json({error: false, message: '', data: {exists: await userExists(jsonBody.email)}});
 
     } catch (e) {
+        console.log('EXCEPTION validate_email...');
         console.log(e);
         res
             .status(501)
