@@ -45,7 +45,7 @@ router.post('/signup', (req, res, next) => {
             });
             // save the user
             const output = await newUser.save();
-            console.log(output);
+            // console.log(output);
 
             const token = jwt.sign(jsonBody, SECRET_KEY, {expiresIn: '24h'});
             res
@@ -79,7 +79,7 @@ router.post('/signin', (req, res, next) => {
                 return res.status(401).json({error: true, message: 'Invalid Credentials', data: {}});
             }
 
-            const token = jwt.sign(jsonBody, SECRET_KEY, {expiresIn: '2h'});
+            const token = jwt.sign(jsonBody, SECRET_KEY, {expiresIn: '24h'});
             res.status(200).json({error: false, message: 'Authenticated', data: {token: token}});
 
         } catch (e) {
