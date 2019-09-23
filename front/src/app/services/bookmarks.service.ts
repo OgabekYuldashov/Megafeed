@@ -28,6 +28,8 @@ export class BookmarksService {
             }
         };
 
+        console.log(newBookmark);
+                
         this.http.post("http://localhost:9090/api/v1/bookmarks", newBookmark).subscribe((data: BookmarkModel) => {
             bookmarksStore.dispatch(addBookmark(data));
         });
