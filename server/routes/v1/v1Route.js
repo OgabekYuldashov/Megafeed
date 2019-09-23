@@ -15,7 +15,6 @@ router.use(expressJwt({ secret: SECRET_KEY }).unless({
         '/api/v1/posts',
         '/api/v1/users/signup',
         '/api/v1/users/signin',
-        '/api/v1/bookmarks',
         '/api/v1/users/validate_email']}));
 
 
