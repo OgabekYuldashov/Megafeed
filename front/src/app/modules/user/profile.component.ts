@@ -47,7 +47,7 @@ import {Router} from '@angular/router';
 export class ProfileComponent implements OnInit {
   public user: any;
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(public auth: AuthService, private router: Router) {
   }
 
   onLogout() {
