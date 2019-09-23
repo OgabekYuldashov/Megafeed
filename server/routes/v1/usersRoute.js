@@ -2,20 +2,135 @@
 
 // 1. DEPENDENCIES
 const express = require('express');
-const router = express.Router({ caseSensitive: false, strict: false });
+const mongoose = require('mongoose');
+const router = express.Router({caseSensitive: false, strict: false});
+const bcrypt = require('bcrypt');
+const util = require('util');
+const hash = util.promisify(bcrypt.hash);
 
-const PostModel = require('../../models/post.model');
+const User = require('./../../schemes/user.schema');
 
+const {dburl, SECRET_KEY, saltRounds} = require('./../../config');
 
 // 2. MIDDLEWARE
+const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+const expressJwt = require('express-jwt');
 
+router.use(bodyParser.json());
+router.use(expressJwt({secret: SECRET_KEY}).unless({path: ['/api/v1/users/signup', '/api/v1/users/signin']}));
 
 // 3. ROUTES
+/************************ START PUBLIC ENDPOINTS *************************/
+router.post('/signup', (req, res, next) => {
+        req.reqKeys = ['email', 'password'];
+        next();
+    },
+    validateFields,
+    async function (req, res, next) {
+        try {
+            let jsonBody = req.body;
+
+            if (await userExists(jsonBody.email)) {
+                return res
+                    .status(200)
+                    .json({error: true, message: 'User Exists', data: {}});
+            }
+            jsonBody.password = await hash(jsonBody.password + SECRET_KEY, saltRounds);
+
+            // create a new user
+            let newUser = User({
+                email: jsonBody.email,
+                password: jsonBody.password
+            });
+            // save the user
+            const output = await newUser.save();
+            console.log(output);
+
+            const token = jwt.sign(jsonBody, SECRET_KEY, {expiresIn: '24h'});
+            res
+                .status(201)
+                .json({error: false, message: 'Record Created', data: {token: token}});
+
+        } catch (e) {
+            console.log(e);
+            res
+                .status(501)
+                .json({error: true, message: 'Internal Error', data: {}});
+        }
+    });
+
+router.post('/signin', (req, res, next) => {
+        req.reqKeys = ['email', 'password'];
+        next();
+    },
+    validateFields,
+    async (req, res, next) => {
+        try {
+            const jsonBody = req.body;
+
+            const user = await User.findOne({'email': jsonBody.email});
+
+            if (user === null) {
+                return res.status(401).json({error: true, message: 'Invalid Credentials', data: {}});
+            }
+            let isMatching = await bcrypt.compare(jsonBody.password + SECRET_KEY, user.password);
+            if (!isMatching) {
+                return res.status(401).json({error: true, message: 'Invalid Credentials', data: {}});
+            }
+
+            const token = jwt.sign(jsonBody, SECRET_KEY, {expiresIn: '2h'});
+            res.status(200).json({error: false, message: 'Authenticated', data: {token: token}});
+
+        } catch (e) {
+            console.log(e);
+            res
+                .status(501)
+                .json({error: true, message: 'Internal Error', data: {}});
+        }
+    });
+
+router.post('/validate_email', async (req, res, next) => {
+    const jsonBody = req.body;
+
+    if (!('email' in jsonBody)) {
+        return res
+            .status(400)
+            .json({error: true, message: 'Invalid JSON Body', data: {}})
+    }
+
+    const output = await users.findOne({'email': jsonBody.email});
+
+    res.status(200).json({error: false, message: '', data: {exists: output !== null}});
+});
+/************************ END PUBLIC ENDPOINTS *************************/
+
 
 router.get('', function (req, res, next) {
     res
         .status(200)
-        .json({ message: 'hello' })
+        .json({message: 'hello'})
 });
+
+function validateFields(req, res, next) {
+    let jsonBody = req.body;
+    let reqKeys = req.reqKeys;
+
+    for (let i = 0; i < reqKeys.length; i++) {
+        if (!(reqKeys[i] in jsonBody)) {
+            return res
+                .status(400)
+                .json({error: true, message: 'Invalid JSON Body', data: {}})
+        }
+    }
+
+    next()
+}
+
+async function userExists(email) {
+    let output = await User.find({email: email});
+    console.log(output);
+    return output.length !== 0;
+}
 
 module.exports = router;

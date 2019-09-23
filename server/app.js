@@ -22,6 +22,7 @@ const port = 9090;
 app.set('env', 'development');
 app.disable('x-powered-by');
 app.set('trust proxy', true);
+mongoose.connect(url);
 
 
 // 4. MIDDLEWARE

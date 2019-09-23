@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
   declarations: [
     SigninComponent
   ],
-  
   imports: [
     CommonModule,
     RouterModule.forChild([
