@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PostModel } from '../models/post.model';
+import { Post } from '../models/post.model';
 
 @Injectable()
 export class AddPostService {
@@ -9,22 +9,37 @@ export class AddPostService {
 
   }
 
-  addPost(post: PostModel) {
-    return this.http.post('http://localhost:9090/api/v1/post/createPost', {
-      title : post.title,
-      description : post.description,
-   //   imageUrl: post.imageUrl,
-      keywords: post.keywords
+  addPost(post: Post) {
+    return this.http.post('http://localhost:9090/api/v1/posts/', {
+      title: post.title,
+      shortDescription: post.shortDescription,
+      description: post.description,
+      // imageUrl: post.imageUrl,
+      imageUrl: 'assets/img/demopic/10.jpg',
+      //  keywords: post.keywords,
+      keywords: post.keywords,
+      // author: post.author
+      author : {
+        imageUrl: 'https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x',
+        name: 'Sal'
+      }
     });
   }
-
-  updatePost(post: PostModel) {
-    return this.http.post('/api/v1/post/updatePost', {
-      id: post._id,
+  updatePost(post: Post) {
+    // @ts-ignore
+    return this.http.post('http://localhost:9090/api/v1/posts/', {
       title : post.title,
+      shortDescription : post.shortDescription,
       description : post.description,
- //     imageUrl: post.imageUrl,
-      keywords: post.keywords
+      // imageUrl: post.imageUrl,
+      imageUrl : 'assets/img/demopic/10.jpg',
+      //  keywords: post.keywords,
+      keywords: post.keywords,
+      // author: post.author
+      author : {
+        imageUrl: 'https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x',
+        name: 'Sal'
+      }
     });
   }
 
