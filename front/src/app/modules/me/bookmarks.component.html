@@ -1,0 +1,9 @@
+<p>bookmarks works!</p>
+
+
+<ul>
+    <li class="nav-item" *ngFor="let b of bookmarks">
+        {{b.post.title}}
+    </li>
+</ul>
+<button (click)="addNewBookmark()">Add new bookmark</button>

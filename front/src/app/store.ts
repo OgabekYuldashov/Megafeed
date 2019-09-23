@@ -1,4 +1,6 @@
 import { createStore } from 'redux';
-import { reducer } from './reducers/posts';
+import * as postsReducer from './reducers/posts';
+import * as bookmarksReducer from './reducers/bookmarks';
 
-export const postsStore = createStore(reducer);
+export const postsStore = createStore(postsReducer.reducer);
+export const bookmarksStore = createStore(bookmarksReducer.reducer);

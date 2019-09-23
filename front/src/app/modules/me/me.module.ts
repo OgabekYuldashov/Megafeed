@@ -1,19 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SigninComponent } from './signin.component';
+import { BookmarksComponent } from './bookmarks.component';
 import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
-  declarations: [
-    SigninComponent
-  ],
+  declarations: [BookmarksComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: 'signin', component: SigninComponent },
+      { path: 'bookmarks', component: BookmarksComponent },
     ])
   ]
 })
-export class UserModule { }
+export class MeModule { }

@@ -7,6 +7,7 @@ export class Post {
     this.imageUrl = '';
     this.keywords = '';
     this.author = {
+      _id: '',
       imageUrl: '',
       name: ''
     };
@@ -18,6 +19,7 @@ export class Post {
   public imageUrl;
   public keywords;
   public author: {
+    _id: string;
     imageUrl: string;
     name: string;
   };
