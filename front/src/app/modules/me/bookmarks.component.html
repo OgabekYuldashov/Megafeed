@@ -1,13 +1,18 @@
-<div class="mainheading">
-    <h1 class="sitetitle">Bookmarks</h1>
-    <p class="lead">
-        All stories in one place
-    </p>
-</div>
+<div class="container">
 
-<div *ngFor="let b of bookmarks" class="mb-5 mt-5">
-    <h4>{{b.post.title}}</h4>
-    <p>{{b.post.shortDescription}}</p>
-    <small>{{b.addedDate}}</small>
-    <a href="#" (click)="removeBookmark(b._id)">remove bookmark</a>
+    <div class="mainheading">
+        <h1 class="sitetitle">Bookmarks</h1>
+        <p class="lead">
+            All stories in one place
+        </p>
+    </div>
+
+    <div *ngFor="let b of bookmarks" class="mb-5">
+        <h4>{{b.post.title}}</h4>
+        <p>{{b.post.shortDescription}}</p>
+        <small>{{b.addedDate | date:'medium'}}</small>
+        <p><button type="button" (click)="removeBookmark(b._id)" class="btn-link">remove bookmark</button></p>
+        <hr>
+    </div>
+
 </div>

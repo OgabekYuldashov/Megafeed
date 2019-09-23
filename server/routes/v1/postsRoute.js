@@ -81,6 +81,8 @@ router.get('/', async (req, res) =>  {
 
 //GET '/:uid'
 router.get('/:_id', (req, res) => {
+
+    console.log(req.params._id);
     res.end();
 
     // mongoose.connect(url, { useMongoClient: true }, function (err) {
