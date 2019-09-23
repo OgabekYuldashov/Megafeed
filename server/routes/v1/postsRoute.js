@@ -56,19 +56,6 @@ router.patch('/', (req, res) => {
     });
 });
 
-//GET '/:uid'
-// router.get('/:_id', (req, res) => {
-//     mongoose.connect(url, { useMongoClient: true }, function (err) {
-//         if (err) throw err;
-//         Post.find({}, [], { sort: { _id: -1 } }, (err, doc) => {
-//             if (err) throw err;
-//             return res.status(200).json({
-//                 status: 'success',
-//                 data: doc
-//             })
-//         })
-//     });
-// });
 
 //DELETE '/:pid'
 router.delete('/:pid', (req, res) => {
@@ -91,6 +78,22 @@ router.get('/', async (req, res) =>  {
     return res.status(200).json(posts);
 })
 
+
+//GET '/:uid'
+router.get('/:_id', (req, res) => {
+    res.end();
+
+    // mongoose.connect(url, { useMongoClient: true }, function (err) {
+    //     if (err) throw err;
+    //     Post.find({}, [], { sort: { _id: -1 } }, (err, doc) => {
+    //         if (err) throw err;
+    //         return res.status(200).json({
+    //             status: 'success',
+    //             data: doc
+    //         })
+    //     })
+    // });
+});
 
 // router.get('/', function (req, res, next) {
 //     // console.log("Category: " + req.query.category);

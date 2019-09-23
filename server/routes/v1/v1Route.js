@@ -12,7 +12,7 @@ const {SECRET_KEY} = require('./../../config');
 router.use(bodyParser.json());
 router.use(expressJwt({ secret: SECRET_KEY }).unless({
     path: [
-        '/api/v1/posts',
+        /^\/api\/v1\/posts\//,
         '/api/v1/users/signup',
         '/api/v1/users/signin',
         '/api/v1/users/validate_email']}));

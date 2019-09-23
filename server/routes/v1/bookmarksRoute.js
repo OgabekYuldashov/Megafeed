@@ -9,17 +9,22 @@ const mongoose = require('mongoose');
 
 router.get('/', async function (req, res, next) {
     // console.log("Bookmark. Get all bookmarks for user: " + req.query.category); 
-    console.log('select bookmarks for userId: ' + req.query.userId);
-    console.log('req.user._id = ' + req.user._id);
+    // console.log('select bookmarks for userId: ' + req.query.userId);
+    // console.log('req.user._id = ' + req.user._id);
     console.log('req.user.email = ' + req.user.email);
 
-    var bookmarks = await Bookmark.find({ userId: req.user._id }, [], { sort: { addedDate: 1 } });
+    console.log(req);
+
+    // var bookmarks = await Bookmark.find({ userId: req.user._id }, [], { sort: { addedDate: 1 } });
     
-    res.status(200).json(bookmarks);
+    // res.status(200).json(bookmarks);
+    res.end();
 });
 
 // insert new bookmark
 router.post('/', async function (req, res, next) {
+    console.log(req.user);
+
     const newBookmark = new Bookmark({
         addedDate: req.body.addedDate,
         userId: req.user._id,
