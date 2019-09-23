@@ -11,8 +11,7 @@ export class BookmarksService {
     constructor(private http: HttpClient) { }
 
     getBookmarksList() {
-        let params = new HttpParams().set("userId", '1');
-        this.http.get("http://localhost:9090/api/v1/bookmarks", { params: params }).subscribe((data: BookmarkModel[]) => {
+        this.http.get("http://localhost:9090/api/v1/bookmarks").subscribe((data: BookmarkModel[]) => {
             bookmarksStore.dispatch(loadBookmarks(data));
         });
     }
@@ -20,7 +19,7 @@ export class BookmarksService {
     saveBookmark(postId, postTitle, postShortDescription) {
         const newBookmark: BookmarkModel = {
             _id: null,
-            userId: '1',
+            userId: null,
             addedDate: new Date(2019, 9, 22),
             post: {
                 _id: postId,
@@ -34,8 +33,8 @@ export class BookmarksService {
         });
     }
 
-    deleteBookmark() {
-        let params = new HttpParams().set("userId", '1');
+    deleteBookmark(bookmarkId: string) {
+        let params = new HttpParams().set("_id", bookmarkId);
         this.http.get("http://localhost:9090/api/v1/bookmarks", { params: params }).subscribe((data: BookmarkModel[]) => {
             bookmarksStore.dispatch(loadBookmarks(data));
         });

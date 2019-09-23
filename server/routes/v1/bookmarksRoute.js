@@ -1,3 +1,6 @@
+// req.user._id;
+// req.user.email;
+
 // 1. DEPENDENCIES
 const router = require('express').Router({ caseSensitive: false, strict: false });
 const BookmarkModel = require('../../models/bookmark.model');
@@ -7,10 +10,10 @@ const mongoose = require('mongoose');
 router.get('/', async function (req, res, next) {
     // console.log("Bookmark. Get all bookmarks for user: " + req.query.category); 
     console.log('select bookmarks for userId: ' + req.query.userId);
-    // req.user._id;
-    // req.user.email;
+    console.log('req.user._id = ' + req.user._id);
+    console.log('req.user.email = ' + req.user.email);
 
-    var bookmarks = await Bookmark.find({ userId: req.query.userId }, [], { sort: { addedDate: 1 } });
+    var bookmarks = await Bookmark.find({ userId: req.user._id }, [], { sort: { addedDate: 1 } });
     
     res.status(200).json(bookmarks);
 });
@@ -19,7 +22,7 @@ router.get('/', async function (req, res, next) {
 router.post('/', async function (req, res, next) {
     const newBookmark = new Bookmark({
         addedDate: req.body.addedDate,
-        userId: req.body.userId,
+        userId: req.user._id,
         post: {
             _id: req.body.post._id,
             title: req.body.post.title,
@@ -37,7 +40,7 @@ router.post('/', async function (req, res, next) {
 
 // delete bookmark
 router.delete('/:_id', async function (req, res, next) {
-    await Bookmark.remove({ _id: req.query._id });
+    await Bookmark.remove({ userId: req.user._id, _id: req.query._id });
     res.status(200).end();
 })
 
