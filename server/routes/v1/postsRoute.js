@@ -93,6 +93,7 @@ router.get('/', async (req, res) =>  {
 
 //Get post by id
 router.get('/:_id', async (req, res) =>  {
+
    //  let id =  req.params;
    //  console.log(id);
    // // posts = await Post.find({}, { sort: { _id: -1 } });
@@ -100,7 +101,7 @@ router.get('/:_id', async (req, res) =>  {
    //  return res.status(200).json(posts);
 
     try {
-        const posts = await Post.findById(req.param._id);
+        const posts = await Post.findById(req.query._id);
         res.status(200).json(posts);
     }
     catch (error) {
