@@ -13,7 +13,7 @@ export class BookmarksComponent implements OnInit {
   private unsubscribe;
 
   constructor(private bookmarksService: BookmarksService) {
-    this.bookmarksService.getOnlineData();
+    this.bookmarksService.getBookmarksList();
   }
 
   ngOnInit() {
@@ -27,7 +27,8 @@ export class BookmarksComponent implements OnInit {
     this.unsubscribe();
   }
 
-  addNewBookmark() {
-    this.bookmarksService.saveBookmark();
+  removeBookmark(id: string) {
+    this.bookmarksService.removeBookmark(id);
+    return false;
   }
 }

@@ -17,9 +17,6 @@
         <li class="nav-item" *ngFor="let category of categories">
           <a class="nav-link" [routerLink]="['', category.alias]">{{category.title}}</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['', 'show-post']">show post</a>
-        </li>
         <li class="nav-item" *ngIf="!auth.loggedIn">
           <a class="nav-link" [routerLink]="['user', 'signin']">Sign in</a>
         </li>

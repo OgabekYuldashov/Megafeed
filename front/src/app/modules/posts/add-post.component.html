@@ -63,7 +63,7 @@
                   alt="Sal"></a>
             </div>
             <div class="col-md-10">
-              <a class="link-dark" href="author.html">Sal</a><a href="#" class="btn follow">Follow</a>
+              <a  class="link-dark" href="author.html">Sal</a><a href="#" class="btn follow">Follow</a>
               <span class="author-description">Founder of WowThemes.net and creator of <b>"Mediumish"</b> theme that
                 you're currently previewing. Developing professional premium themes, templates, plugins, scripts since
                 2012.</span>
@@ -81,6 +81,12 @@
               aria-describedby="emailHelp" placeholder="Enter title">
           </div>
 
+          <div class="posttitle">
+            <label for="exampleInputEmail1">Short Description: </label>
+            <input name="shortDescription" type="text" [(ngModel)]="post.shortDescription" class="form-control" id="exampleInputEmail2"
+                   aria-describedby="emailHelp" placeholder="Enter short Description">
+          </div>
+
         </div>
 
         <!--       Begin Featured Image-->
@@ -91,13 +97,13 @@
 
         <!--      <label for="exampleInputEmail1">Image Demo: </label>-->
         <!--      <img class="featured-image img-fluid" src="assets/img/demopic/10.jpg" alt="">-->
-        <img class="featured-image img-fluid" src="post.imageUrl" alt="">
+<!--        <img class="featured-image img-fluid" src="post.imageUrl" alt="">-->
         <!--      <img class="featured-image img-fluid" *ngIf="avatarUrl" [src]="avatarUrl"  class="avatar" />-->
 
         <!--      <div >-->
         <!--        <input id="myFile" type="file" name="myFile" multiple class="file-loading">-->
         <!--      </div>-->
-        <app-upload name="imageurl" class="form-control"></app-upload>
+        <app-upload name="imageUrl" class="form-control"></app-upload>
 
 
 
@@ -112,6 +118,12 @@
                     content_css: '../assets/skins/ui/oxide/content.min.css', height: 730}"
                     ></editor>
           </div>
+        </div>
+
+        <div class="posttitle">
+          <label for="exampleInputEmail1">Key words: </label>
+          <input name="keywords" type="text" [(ngModel)]="post.keywords" class="form-control" id="exampleInputEmail3"
+                 aria-describedby="emailHelp" placeholder="Enter keywords">
         </div>
         <!-- End Post Content -->
         <div class="addbtn">

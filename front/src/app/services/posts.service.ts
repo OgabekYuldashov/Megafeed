@@ -11,7 +11,7 @@ import { loadPostsPreviews } from './../actions/postPreview';
 export class PostsService {
     constructor(private http: HttpClient) { }
 
-    getOnlineData(category: string) {
+    getPostsFeed(category: string) {
         let params = new HttpParams().set("category", category);
         this.http.get("http://localhost:9090/api/v1/posts", { params: params }).subscribe((data: PostPreviewModel[]) => {
             postsStore.dispatch(loadPostsPreviews(data));

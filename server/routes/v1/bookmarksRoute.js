@@ -1,42 +1,28 @@
+// req.user._id;
+// req.user.email;
+
 // 1. DEPENDENCIES
 const router = require('express').Router({ caseSensitive: false, strict: false });
 const BookmarkModel = require('../../models/bookmark.model');
 const Bookmark = require('./../../schemes/bookmark.schema');
 const mongoose = require('mongoose');
 
-posts = [];
-posts.push(BookmarkModel.newBookmark(
-    '1',
-    new Date(2019, 9, 21),
-    '1',
-    "Uber Is Going to Zero and Their VC Backers Know It",
-    "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-));
-posts.push(BookmarkModel.newBookmark(
-    '2',
-    new Date(2019, 9, 21),
-    '2',
-    "Little red dress and a perfect summer",
-    "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-));
-posts.push(BookmarkModel.newBookmark(
-    '3',
-    new Date(2019, 9, 21),
-    '3',
-    "WTF is The Blockchain?",
-    "The ultimate 3500-word guide in plain English to understand Blockchain.",
-));
-
-
-router.get('/', function (req, res, next) {
+router.get('/', async function (req, res, next) {
     // console.log("Bookmark. Get all bookmarks for user: " + req.query.category); 
-    res.json(posts);
+    console.log('select bookmarks for userId: ' + req.query.userId);
+    console.log('req.user._id = ' + req.user._id);
+    console.log('req.user.email = ' + req.user.email);
+
+    var bookmarks = await Bookmark.find({ userId: req.user._id }, [], { sort: { addedDate: 1 } });
+    
+    res.status(200).json(bookmarks);
 });
 
 // insert new bookmark
 router.post('/', async function (req, res, next) {
     const newBookmark = new Bookmark({
         addedDate: req.body.addedDate,
+        userId: req.user._id,
         post: {
             _id: req.body.post._id,
             title: req.body.post.title,
@@ -51,6 +37,14 @@ router.post('/', async function (req, res, next) {
         throw err
     }
 })
+
+// delete bookmark
+router.delete('/:_id', async function (req, res, next) {
+    await Bookmark.remove({ userId: req.user._id, _id: req.query._id });
+    res.status(200).end();
+})
+
+
 
 module.exports = router;
 

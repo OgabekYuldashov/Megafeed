@@ -4,6 +4,7 @@ import { PostPreviewModel } from 'src/app/models/postPreview.model';
 import { postsStore } from './../../store';
 import { loadPostsPreviews } from './../../actions/postPreview';
 import { PostsService } from 'src/app/services/posts.service';
+import { BookmarksService } from 'src/app/services/bookmarks.service';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class PostsfeedComponent implements OnInit, OnDestroy {
       this.categoryTitle = category.title;
       this.categoryDescription = category.description;
 
-      this.postsService.getOnlineData(categoryAlias);
+      this.postsService.getPostsFeed(categoryAlias);
     });
   }
 

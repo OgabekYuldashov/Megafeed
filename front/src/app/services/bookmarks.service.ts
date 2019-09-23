@@ -10,25 +10,33 @@ import { loadBookmarks, addBookmark } from '../actions/bookmarks.actions';
 export class BookmarksService {
     constructor(private http: HttpClient) { }
 
-    getOnlineData() {
+    getBookmarksList() {
         this.http.get("http://localhost:9090/api/v1/bookmarks").subscribe((data: BookmarkModel[]) => {
             bookmarksStore.dispatch(loadBookmarks(data));
         });
     }
 
-    saveBookmark() {
+    saveBookmark(postId, postTitle, postShortDescription) {
         const newBookmark: BookmarkModel = {
-            _id: '7',
-            addedDate: new Date(2019, 9, 22),
+            _id: null,
+            userId: null,
+            addedDate: new Date(Date.now()),
             post: {
-                _id: '1',
-                title: 'This is new bookmark',
-                shortDescription: 'short description'
+                _id: postId,
+                title: postTitle,
+                shortDescription: postShortDescription
             }
         };
 
         this.http.post("http://localhost:9090/api/v1/bookmarks", newBookmark).subscribe((data: BookmarkModel) => {
             bookmarksStore.dispatch(addBookmark(data));
+        });
+    }
+
+    removeBookmark(bookmarkId: string) {
+        let params = new HttpParams().set("_id", bookmarkId);
+        this.http.delete("http://localhost:9090/api/v1/bookmarks", { params: params }).subscribe(() => {
+            this.getBookmarksList();
         });
     }
 }

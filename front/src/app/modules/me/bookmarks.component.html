@@ -1,9 +1,13 @@
-<p>bookmarks works!</p>
+<div class="mainheading">
+    <h1 class="sitetitle">Bookmarks</h1>
+    <p class="lead">
+        All stories in one place
+    </p>
+</div>
 
-
-<ul>
-    <li class="nav-item" *ngFor="let b of bookmarks">
-        {{b.post.title}}
-    </li>
-</ul>
-<button (click)="addNewBookmark()">Add new bookmark</button>
+<div *ngFor="let b of bookmarks" class="mb-5 mt-5">
+    <h4>{{b.post.title}}</h4>
+    <p>{{b.post.shortDescription}}</p>
+    <small>{{b.addedDate}}</small>
+    <a href="#" (click)="removeBookmark(b._id)">remove bookmark</a>
+</div>
