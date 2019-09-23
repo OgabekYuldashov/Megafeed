@@ -12,15 +12,7 @@ const User = require('./../../schemes/user.schema');
 const {SECRET_KEY, saltRounds} = require('./../../config');
 
 // 2. MIDDLEWARE
-const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
-const expressJwt = require('express-jwt');
-
-router.use(bodyParser.json());
-router.use(expressJwt({secret: SECRET_KEY}).unless({path: [
-        '/api/v1/users/signup',
-        '/api/v1/users/signin',
-        '/api/v1/users/validate_email']}));
 
 // 3. ROUTES
 /************************ START PUBLIC ENDPOINTS *************************/

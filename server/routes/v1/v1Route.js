@@ -6,8 +6,17 @@ const router = express.Router({caseSensitive: false, strict: false});
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
+const {SECRET_KEY, saltRounds} = require('./../../config');
+
 
 // 2. MIDDLEWARE
+
+router.use(bodyParser.json());
+router.use(expressJwt({secret: SECRET_KEY}).unless({path: [
+        '/api/v1/users/signup',
+        '/api/v1/users/signin',
+        '/api/v1/users/validate_email']}));
+
 
 // 3. ROUTES
 router.use('/posts', require('./postsRoute'));
