@@ -18,7 +18,7 @@ export class LayoutComponent {
 
   public categories: CategoryModel[];
 
-  constructor(private auth: AuthService) {
+  constructor(public auth: AuthService) {
     this.categories = postsStore.getState().categories;
   }
 

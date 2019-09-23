@@ -42,13 +42,18 @@ export class AuthService {
   }
 
   public get loggedIn(): boolean {
-    return (localStorage.getItem('access_token') !== null);
+    return (localStorage.getItem('access_token') !== null && localStorage.getItem('access_token') !== undefined && localStorage.getItem('access_token') !== '');
   }
 
   getActiveUser() {
-    if (!this.loggedIn) {
+    if (!localStorage.getItem('access_token')) {
       return null;
     }
-    return helper.decodeToken(localStorage.getItem('access_token'));
+    try{
+      return helper.decodeToken(localStorage.getItem('access_token'));
+    }catch(e){
+      localStorage.removeItem('access_token');
+      return null;
+    }
   }
 }
