@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const  config = require('./config');
-const url = config.dburl;
+const config = require('./config');
 
 const cors = require('cors');
 
@@ -13,7 +12,7 @@ const compression = require('compression');
 
 // 2. INITIALIZATION
 const app = express();
-const logPath = fs.createWriteStream(path.join(__dirname + '/logs/access.log'), {flags: 'a'});
+const logPath = fs.createWriteStream(path.join(__dirname + '/logs/access.log'), { flags: 'a' });
 
 
 // 3. CONFIGURATION
@@ -22,11 +21,15 @@ const port = 9090;
 app.set('env', 'development');
 app.disable('x-powered-by');
 app.set('trust proxy', true);
-mongoose.connect(url);
-
+app.use((req, res, next) => {
+    mongoose.connect(config.dburl, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
+        if (err) throw err;
+        next();
+    });
+})
 
 // 4. MIDDLEWARE
-app.use(morgan('dev', {stream: logPath}));
+app.use(morgan('dev', { stream: logPath }));
 app.use(compression());
 app.use(cors());
 app.use(express.json());

@@ -5,6 +5,7 @@ function newPost(
     shortDescription,
     imageUrl,
     postDate,
+    authorId,
     authorImageUrl,
     authorName) {
     const post = {
@@ -15,6 +16,7 @@ function newPost(
         imageUrl: imageUrl,
         postDate: postDate,
         author: {
+            authorId: authorId,
             imageUrl: authorImageUrl,
             name: authorName
         }
@@ -28,6 +30,7 @@ function newPostPreview(
     shortDescription,
     imageUrl,
     postDate,
+    authorId,
     authorImageUrl,
     authorName) {
     const post = {
@@ -37,6 +40,7 @@ function newPostPreview(
         imageUrl: imageUrl,
         postDate: postDate,
         author: {
+            _id: authorId,
             imageUrl: authorImageUrl,
             name: authorName
         }

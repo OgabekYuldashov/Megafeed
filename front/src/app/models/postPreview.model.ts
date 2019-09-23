@@ -6,6 +6,7 @@ export interface PostPreviewModel {
     keywords: string;
     postDate: Date;
     author: {
+        _id: string;
         imageUrl: string;
         name: string;
     }
