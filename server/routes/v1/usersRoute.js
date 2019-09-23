@@ -46,9 +46,9 @@ router.post('/signup', (req, res, next) => {
                 password: jsonBody.password
             });
             // save the user
-            await newUser.save();
+            let result = await newUser.save();
 
-            const token = jwt.sign(jsonBody, SECRET_KEY, {expiresIn: '24h'});
+            const token = jwt.sign({'_id': result._id, 'email': result.email}, SECRET_KEY, {expiresIn: '24h'});
             res
                 .status(201)
                 .json({error: false, message: 'Record Created', data: {token: token}});
