@@ -20,7 +20,7 @@ export class BookmarksService {
         const newBookmark: BookmarkModel = {
             _id: null,
             userId: null,
-            addedDate: new Date(2019, 9, 22),
+            addedDate: new Date(Date.now()),
             post: {
                 _id: postId,
                 title: postTitle,
@@ -33,10 +33,10 @@ export class BookmarksService {
         });
     }
 
-    deleteBookmark(bookmarkId: string) {
+    removeBookmark(bookmarkId: string) {
         let params = new HttpParams().set("_id", bookmarkId);
-        this.http.get("http://localhost:9090/api/v1/bookmarks", { params: params }).subscribe((data: BookmarkModel[]) => {
-            bookmarksStore.dispatch(loadBookmarks(data));
+        this.http.delete("http://localhost:9090/api/v1/bookmarks", { params: params }).subscribe(() => {
+            this.getBookmarksList();
         });
     }
 }

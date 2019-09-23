@@ -1,7 +1,7 @@
 import { BookmarkModel } from '../models/bookmark.model';
 
-export const ADD = '[bookmarks] Add';
-export const LOAD = '[bookmarks] Load';
+export const ADD =      '[bookmarks] Add';
+export const LOAD =     '[bookmarks] Load';
 
 export function addBookmark(newBookmark: BookmarkModel) {
     return {
@@ -9,6 +9,7 @@ export function addBookmark(newBookmark: BookmarkModel) {
         payload: newBookmark
     }
 }
+
 export function loadBookmarks(bookmarks: BookmarkModel[]) {
     return {
         type: LOAD,

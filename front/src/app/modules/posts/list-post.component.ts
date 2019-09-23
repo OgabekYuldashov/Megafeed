@@ -15,7 +15,7 @@ export class ListPostComponent {
 
 
   addNewBookmark(post: PostPreviewModel) {
-    console.log(post);
     this.bookmarksService.saveBookmark(post._id, post.title, post.shortDescription);
+    return false;
   }
 }

@@ -10,7 +10,6 @@ const { SECRET_KEY, saltRounds } = require('./../../config');
 
 
 // 2. MIDDLEWARE
-
 router.use(bodyParser.json());
 router.use(expressJwt({ secret: SECRET_KEY }).unless({
     path: [

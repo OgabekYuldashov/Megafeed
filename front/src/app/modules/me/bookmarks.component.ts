@@ -27,7 +27,8 @@ export class BookmarksComponent implements OnInit {
     this.unsubscribe();
   }
 
-  addNewBookmark() {
-    this.bookmarksService.saveBookmark('1', 'title', 'short description');
+  removeBookmark(id: string) {
+    this.bookmarksService.removeBookmark(id);
+    return false;
   }
 }
