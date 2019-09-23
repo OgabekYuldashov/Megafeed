@@ -71,25 +71,48 @@ router.patch('/', (req, res) => {
 // });
 
 //DELETE '/:pid'
-router.delete('/:pid', (req, res) => {
-    mongoose.connect(url, { useMongoClient: true }, function (err) {
-        if (err) throw err;
-        Post.findByIdAndRemove(req.body.id,
-            (err, doc) => {
-                if (err) throw err;
-                return res.status(200).json({
-                    status: 'success',
-                    data: doc
-                })
-            })
-    });
-});
+// router.delete('/:pid', (req, res) => {
+//     mongoose.connect(url, { useMongoClient: true }, function (err) {
+//         if (err) throw err;
+//         Post.findByIdAndRemove(req.body.id,
+//             (err, doc) => {
+//                 if (err) throw err;
+//                 return res.status(200).json({
+//                     status: 'success',
+//                     data: doc
+//                 })
+//             })
+//     });
+// });
 
 //Get all post
 router.get('/', async (req, res) =>  {
     posts = await Post.find({}, '-description', { sort: { _id: -1 } });
     return res.status(200).json(posts);
 })
+
+//Get post by id
+router.get('/:_id', async (req, res) =>  {
+   //  let id =  req.params;
+   //  console.log(id);
+   // // posts = await Post.find({}, { sort: { _id: -1 } });
+   //  posts = await Post.find({'_id' : id});
+   //  return res.status(200).json(posts);
+
+    try {
+        const posts = await Post.findById(req.param._id);
+        res.status(200).json(posts);
+    }
+    catch (error) {
+        console.error(error);
+        if (error.name === 'CastError') {
+            res.status(404).send('Post by Id, not found');
+        } else
+            res.status(500).send('Error getting post by Id');
+    }
+})
+
+
 
 
 // router.get('/', function (req, res, next) {
