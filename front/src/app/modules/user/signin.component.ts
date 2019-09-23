@@ -38,11 +38,16 @@ export class SigninComponent implements OnInit {
       this.signinForm.controls[i].updateValueAndValidity();
     }
 
-
     this.auth.login(this.signinForm.value.email, this.signinForm.value.password)
       .pipe(first())
       .subscribe(
-        result => this.router.navigate(['/']),
+        (success) => {
+          if (success) {
+            this.router.navigate(['/']);
+          } else {
+            this.error = 'Could not sign in';
+          }
+        },
         err => this.error = 'Could not authenticate'
       );
 

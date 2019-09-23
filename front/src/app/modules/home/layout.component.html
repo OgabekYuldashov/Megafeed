@@ -17,21 +17,13 @@
         <li class="nav-item" *ngFor="let category of categories">
           <a class="nav-link" [routerLink]="['', category.alias]">{{category.title}}</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" #addPost [routerLink]="['posts', 'add-post']">Add post</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['posts', 'show-post']">show post</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['me', 'bookmarks']">My bookmarks</a>
-        </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!auth.loggedIn">
           <a class="nav-link" [routerLink]="['user', 'signin']">Sign in</a>
         </li>
-        <li style="display: flex; justify-content: center; flex-direction: column; text-align: center; font-size: 20px;">
-          <span><i nz-icon nzType="user" nzTheme="outline" style="color: #00000080;"></i></span>
+        <li class="nav-item" *ngIf="auth.loggedIn" style="display: flex; justify-content: center; flex-direction: column; text-align: center; font-size: 20px;">
+          <a (click)="onToggleProfileMenu()" class="nav-link" nz-icon nzType="user" nzTheme="outline" style="color: #00000080;"></a>
+<!--          <app-profile #profileMenu [isVisible]="profileMenuVisibility" (input)="null"></app-profile>-->
+          <app-profile #profileMenu></app-profile>
         </li>
       </ul>
       <!-- End Menu -->

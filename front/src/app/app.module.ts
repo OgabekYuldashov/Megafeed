@@ -11,6 +11,8 @@ import {CommonService} from './services/common.service';
 import {en_US, NZ_I18N, NzIconModule} from 'ng-zorro-antd';
 import {JwtModule} from '@auth0/angular-jwt';
 import {conf} from './config';
+import {UserModule} from './modules/user/user.module';
+import { IsVisibleDirective } from './directives/is-visible.directive';
 
 registerLocaleData(en);
 
@@ -21,6 +23,7 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     LayoutComponent,
+    IsVisibleDirective
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ export function tokenGetter() {
           conf.DOMAIN_URL + '/api/v1/users/validate_email']
       }
     }),
-    NzIconModule
+    NzIconModule,
+    UserModule
   ],
   providers: [{provide: NZ_I18N, useValue: en_US},
     CommonService],

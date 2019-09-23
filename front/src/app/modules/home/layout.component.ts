@@ -1,18 +1,28 @@
-import { Component } from '@angular/core';
-import { CategoryModel } from 'src/app/models/category.model';
-import { postsStore } from 'src/app/store';
+import {Component} from '@angular/core';
+import {CategoryModel} from 'src/app/models/category.model';
+import {postsStore} from 'src/app/store';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './layout.component.html',
-  styleUrls: []
+  styles: [
+      `
+    `
+
+  ]
 })
 export class LayoutComponent {
   title = 'front';
+  profileMenuVisibility = false;
 
   public categories: CategoryModel[];
 
-  constructor(){
+  constructor(private auth: AuthService) {
     this.categories = postsStore.getState().categories;
+  }
+
+  onToggleProfileMenu() {
+    this.profileMenuVisibility = !this.profileMenuVisibility;
   }
 }
