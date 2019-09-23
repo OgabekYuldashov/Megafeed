@@ -126,9 +126,13 @@ function validateFields(req, res, next) {
 }
 
 async function userExists(email) {
-    let output = await User.find({email: email});
-    console.log(output);
-    return output.length !== 0;
+    try{
+        let output = await User.find({email: email});
+        // console.log(output);
+        return output.length !== 0;
+    }catch (e) {
+        throw e;
+    }
 }
 
 module.exports = router;

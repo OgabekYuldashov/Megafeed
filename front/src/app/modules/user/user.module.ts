@@ -6,13 +6,16 @@ import {NgZorroAntdModule, NzFormModule} from 'ng-zorro-antd';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {SignupComponent} from './signup.component';
-import {ProfileComponent} from "./profile.component";
+import {ProfileComponent} from './profile.component';
 
 
 @NgModule({
   declarations: [
     SigninComponent,
     SignupComponent,
+    ProfileComponent
+  ],
+  exports: [
     ProfileComponent
   ],
   imports: [

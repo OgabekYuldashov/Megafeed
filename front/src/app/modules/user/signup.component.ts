@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {conf} from '../../config';
@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
         // tslint:disable-next-line:max-line-length
         Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]
         , this.asyncEmailValidator.bind(this)],
-      password: ['', Validators.required, Validators.minLength(6)]
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
