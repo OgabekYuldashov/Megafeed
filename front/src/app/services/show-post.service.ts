@@ -9,11 +9,12 @@ export class ShowPostService {
   }
 
   getAllPost() {
-     return this.http.post('http://localhost:9090/api/v1/posts/all-post', {});
+    console.log('getting');
+     return this.http.get('http://localhost:9090/api/v1/posts', {});
    // return this.http.post('/posts/getAllPost', {});
   }
 
   deletePost(id) {
-    return this.http.post('http://localhost:9090/api/v1/posts/', {id : id});
+    return this.http.post('http://localhost:9090/api/v1/posts', {id : id});
   }
 }

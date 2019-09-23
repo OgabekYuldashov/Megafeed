@@ -57,18 +57,18 @@ router.patch('/', (req, res) => {
 });
 
 //GET '/:uid'
-router.get('/', (req, res) => {
-    mongoose.connect(url, { useMongoClient: true }, function (err) {
-        if (err) throw err;
-        Post.find({}, [], { sort: { _id: -1 } }, (err, doc) => {
-            if (err) throw err;
-            return res.status(200).json({
-                status: 'success',
-                data: doc
-            })
-        })
-    });
-});
+// router.get('/:_id', (req, res) => {
+//     mongoose.connect(url, { useMongoClient: true }, function (err) {
+//         if (err) throw err;
+//         Post.find({}, [], { sort: { _id: -1 } }, (err, doc) => {
+//             if (err) throw err;
+//             return res.status(200).json({
+//                 status: 'success',
+//                 data: doc
+//             })
+//         })
+//     });
+// });
 
 //DELETE '/:pid'
 router.delete('/:pid', (req, res) => {
@@ -86,7 +86,8 @@ router.delete('/:pid', (req, res) => {
 });
 
 //Get all post
-router.post('/all-post', (req, res) => {
+router.get('/', (req, res) => {
+    console.log('getting')
     mongoose.connect(url, { useMongoClient: true } , function(err){
         if(err) throw err;
         Post.find({},[],{ sort: { _id: -1 } },(err, doc) => {
