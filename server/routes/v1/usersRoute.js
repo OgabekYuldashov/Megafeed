@@ -104,6 +104,7 @@ router.post('/validate_email', async (req, res) => {
         res.status(200).json({error: false, message: '', data: {exists: await userExists(jsonBody.email)}});
 
     } catch (e) {
+        console.log('EXCEPTION validate_email...');
         console.log(e);
         res
             .status(501)

@@ -1,11 +1,11 @@
 <div class="d-flex justify-content-center">
 
-  <form nz-form [formGroup]="signinForm" class="login-form" (ngSubmit)="onFormSubmit()">
-    <h1 class="sitetitle text-center">Sign In</h1>
+  <form nz-form [formGroup]="signupForm" class="login-form" (ngSubmit)="onFormSubmit()">
+    <h1 class="sitetitle text-center">Sign Up</h1>
 
-    <h6 *ngIf="error">{{error}}</h6>
     <nz-form-item>
-      <nz-form-control nzErrorTip="Please input a valid Email!">
+<!--      <nz-form-control nzErrorTip="{{emailError}}">-->
+      <nz-form-control nzErrorTip="Email is invalid or in use">
         <nz-input-group nzPrefixIcon="user">
           <input type="text" nz-input formControlName="email" placeholder="example@example.com"/>
         </nz-input-group>
@@ -20,13 +20,13 @@
     </nz-form-item>
     <nz-form-item>
       <nz-form-control>
-        <label nz-checkbox formControlName="remember">
+        <!--<label nz-checkbox formControlName="remember">
           <span>Remember me</span>
-        </label>
-<!--        <a class="login-form-forgot" class="login-form-forgot">Forgot password</a>-->
-        <button nz-button class="login-form-button" [nzType]="'primary'">Log in</button>
+        </label>-->
+        <p class="text-danger text-center">{{errorMsg}}</p>
+        <button nz-button class="login-form-button" [nzType]="'primary'">Sign Up</button>
         Or
-        <a [routerLink]="['/', 'user', 'signup']">register now!</a>
+        <a [routerLink]="['/', 'user', 'signin']">Sign In now!</a>
       </nz-form-control>
     </nz-form-item>
   </form>
