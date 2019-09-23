@@ -10,6 +10,7 @@ import { UploadComponent } from './upload.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzIconModule, NzMessageService, NzMessageModule } from 'ng-zorro-antd';
+import {ShowPostComponent} from './show-post.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { NzIconModule, NzMessageService, NzMessageModule } from 'ng-zorro-antd';
     ListPostFeaturedComponent,
     AddPostComponent,
     UploadComponent,
+    ShowPostComponent
   ],
   imports: [
     EditorModule,
@@ -31,6 +33,7 @@ import { NzIconModule, NzMessageService, NzMessageModule } from 'ng-zorro-antd';
       { path: '', component: PostsfeedComponent },
       { path: ':category', component: PostsfeedComponent },
       { path: 'posts/add-post', component: AddPostComponent },
+      { path: 'posts/show-post', component: ShowPostComponent },
     ])
   ],
   providers: [

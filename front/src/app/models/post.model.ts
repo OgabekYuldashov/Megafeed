@@ -1,12 +1,11 @@
-export class PostModel {
+export class Post {
   constructor() {
     this._id = '';
     this.title = '';
-    this.description = '';
     this.shortDescription = '';
-    this.keywords = '';
+    this.description = '';
     this.imageUrl = '';
-
+    this.keywords = '';
     this.author = {
       imageUrl: '',
       name: ''
@@ -14,11 +13,10 @@ export class PostModel {
   }
   public _id;
   public title;
-  public description;
   public shortDescription;
-  public keywords;
+  public description;
   public imageUrl;
-
+  public keywords;
   public author: {
     imageUrl: string;
     name: string;
