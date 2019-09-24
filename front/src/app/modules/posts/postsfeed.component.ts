@@ -19,7 +19,6 @@ export class PostsfeedComponent implements OnInit, OnDestroy {
   public categoryDescription: string;
 
   constructor(private route: ActivatedRoute, private postsService: PostsService) {
-    console.log('AAAAA');
     route.params.subscribe(val => {
       let categoryAlias = this.route.snapshot.params.category;
       if (!categoryAlias) categoryAlias = '';

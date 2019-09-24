@@ -110,7 +110,13 @@ router.post('/validate_email', async (req, res) => {
 
 router.get('/:uid', async (req, res) => {
     try {
-        let user = await User.findOne({_id: req.params.uid}, {'_id': 0});
+        // check if a valid ObjectId has been passed
+        if (!req.params.uid.match(/^[0-9a-fA-F]{24}$/)) {
+            return res
+                .status(400)
+                .json({error: true, message: 'Invalid uid', data: {}});
+        }
+        let user = await User.findOne({_id: req.params.uid}, {'password': 0});
         if (!user) {
             return res
                 .status(400)
