@@ -127,7 +127,7 @@ router.post('/follow', async (req, res) => {
                 .json({error: true, message: 'Invalid Arguments', data: {}})
         }
 
-        const output = await User.update({_id: req.user._id}, {'$addToSet': {'following': jsonBody.uid}});
+        await User.update({_id: req.user._id}, {'$addToSet': {'following': jsonBody.uid}});
 
         res.status(200).json({error: false, message: 'Following', data: {}});
 
@@ -157,10 +157,9 @@ router.post('/unfollow', async (req, res) => {
                 .json({error: true, message: 'Invalid Arguments', data: {}})
         }
 
+        await User.update({_id: req.user._id}, {$pullAll: {following: [jsonBody.uid]}});
 
-        const output = await User.update({_id: req.user._id}, {$pullAll: {following: [jsonBody.uid]}});
-
-        res.status(200).json({error: false, message: 'Following', data: output});
+        res.status(200).json({error: false, message: 'Following', data: {}});
 
     } catch (e) {
         console.log('EXCEPTION follow...');
