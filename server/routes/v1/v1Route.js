@@ -16,7 +16,9 @@ router.use(expressJwt({ secret: SECRET_KEY }).unless({
         /^\/api\/v1\/posts\//,
         '/api/v1/users/signup',
         '/api/v1/users/signin',
-        '/api/v1/users/validate_email']}));
+        '/api/v1/users/validate_email',
+        {url: /^\/api\/v1\/users\/\w+$/, methods: ['GET']}
+    ]}));
 
 
 // 3. ROUTES

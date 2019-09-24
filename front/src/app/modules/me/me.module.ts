@@ -22,8 +22,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     CommonModule,
     RouterModule.forChild([
       { path: 'bookmarks', component: BookmarksComponent  },
-      // { path: 'posts', component: PostsComponent, canActivate: [ProtectedPageGuard] },
-      // { path: 'post', component: AddEditPostComponent, canActivate: [ProtectedPageGuard] },
+      { path: 'posts', component: PostsComponent, canActivate: [ProtectedPageGuard] },
+      { path: 'post', component: AddEditPostComponent, canActivate: [ProtectedPageGuard] },
       { path: 'profile', component: EditProfileComponent, canActivate: [ProtectedPageGuard] },
     ]),
     FormsModule,

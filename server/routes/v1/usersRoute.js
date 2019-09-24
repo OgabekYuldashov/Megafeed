@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const hash = util.promisify(bcrypt.hash);
 
 const User = require('./../../schemes/user.schema');
+const Post = require('./../../schemes/post.model');
 
 const {SECRET_KEY, saltRounds} = require('./../../config');
 
@@ -97,6 +98,28 @@ router.post('/validate_email', async (req, res) => {
         }
 
         res.status(200).json({error: false, message: '', data: {exists: await userExists(jsonBody.email)}});
+
+    } catch (e) {
+        console.log('EXCEPTION validate_email...');
+        console.log(e);
+        res
+            .status(501)
+            .json({error: true, message: 'Internal Error', data: {}});
+    }
+});
+
+router.get('/:uid', async (req, res) => {
+    try {
+        let user = await User.findOne({_id: req.params.uid}, {'_id': 0});
+        if (!user) {
+            return res
+                .status(400)
+                .json({error: true, message: 'Invalid uid', data: {}});
+        }
+
+        const posts = await Post.find({'author._id': req.params.uid});
+
+        res.status(200).json({error: false, message: '', data: {user: user, posts: posts}});
 
     } catch (e) {
         console.log('EXCEPTION validate_email...');
