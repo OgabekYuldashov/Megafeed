@@ -1,5 +1,5 @@
 import * as publicationsActions from '../actions/publications.actions';
-import { Post } from '../models/post';
+import { Post } from '../models/post.model';
 
 export interface PublicationsState {
     posts: Post[];

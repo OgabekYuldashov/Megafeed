@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { Post } from '../models/post';
+import { Post } from '../models/post.model';
 
 @Injectable()
 export class CommonService {

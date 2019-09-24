@@ -113,10 +113,12 @@
         <div class="article-post">
           <div class="form-group">
             <label for="exampleInputPassword1">Description</label>
-            <editor name="description" [(ngModel)]="post.description" class="form-control" id="exampleInputPassword1"
-              [init]="{skin_url: '../assets/skins/ui/oxide',
-                    content_css: '../assets/skins/ui/oxide/content.min.css', height: 730}"
-                    ></editor>
+<!--            <editor name="description" [(ngModel)]="post.description" class="form-control" id="exampleInputPassword1"-->
+<!--              [init]="{skin_url: '../assets/skins/ui/oxide',-->
+<!--                    content_css: '../assets/skins/ui/oxide/content.min.css', height: 730}"-->
+<!--                    ></editor>-->
+            <textarea name="description" [(ngModel)]="post.description" class="form-control" id="exampleInputPassword1">
+            </textarea>
           </div>
         </div>
 

@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { AddPostService } from '../../services/add-post.service';
-import { Post } from '../../models/post';
+import { Post } from '../../models/post.model';
 import { Router } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 

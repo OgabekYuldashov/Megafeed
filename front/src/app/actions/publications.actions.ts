@@ -1,4 +1,4 @@
-import { Post } from '../models/post';
+import { Post } from '../models/post.model';
 
 export const ADD =      '[publications] Add';
 export const EDIT =     '[publications] Edit';
@@ -9,21 +9,21 @@ export function addPublication(newPost: Post) {
     return {
         type: ADD,
         payload: newPost
-    };
+    }
 }
 
 export function editPublication(post: Post) {
     return {
         type: EDIT,
         payload: post
-    };
+    }
 }
 
 export function removePublication(postId: string) {
     return {
         type: REMOVE,
         payload: postId
-    };
+    }
 }
 
 export function loadPublications(posts: Post[]) {

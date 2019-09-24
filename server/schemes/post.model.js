@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 // create a schema
 const postModel = new Schema({
     title: { type: String, required: false },
+    category: { type: String, required: false },
     shortDescription: { type: String, required: false },
     description: { type: String, required: false },
     imageUrl: { type: String, required: false },
