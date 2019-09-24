@@ -12,6 +12,7 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzIconModule, NzMessageService, NzMessageModule } from 'ng-zorro-antd';
 import { SinglePostViewComponent } from './single-post-view.component';
 import {ShowPostComponent} from './show-post.component';
+import {ProtectedPageGuard} from '../../guards/protectedPage.guard';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import {ShowPostComponent} from './show-post.component';
     RouterModule.forChild([
       { path: '', component: PostsfeedComponent },
       { path: ':category', component: PostsfeedComponent },
-      { path: 'posts/add-post', component: AddPostComponent },
+      { path: 'posts/add-post', component: AddPostComponent, canActivate: [ProtectedPageGuard] },
       { path: 'posts/show-post', component: ShowPostComponent },
       { path: 'posts/:_id', component: SinglePostViewComponent },
     ])

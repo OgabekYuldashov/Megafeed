@@ -3,36 +3,38 @@
     <div class="col-12 my-auto">
       <div class="d-flex justify-content-center">
 
-        <form nz-form [formGroup]="signinForm" class="login-form" (ngSubmit)="onFormSubmit()">
-          <h1 class="sitetitle text-center">Sign In</h1>
+        <nz-card>
+          <form nz-form [formGroup]="signinForm" class="login-form" (ngSubmit)="onFormSubmit()" style="width: 500rem">
+            <h1 class="sitetitle text-center">Sign In</h1>
 
-          <h6 *ngIf="error">{{error}}</h6>
-          <nz-form-item>
-            <nz-form-control nzErrorTip="Please input a valid Email!">
-              <nz-input-group nzPrefixIcon="user">
-                <input type="text" nz-input formControlName="email" placeholder="example@example.com" />
-              </nz-input-group>
-            </nz-form-control>
-          </nz-form-item>
-          <nz-form-item>
-            <nz-form-control nzErrorTip="Please input at least 6 character Password!">
-              <nz-input-group nzPrefixIcon="lock">
-                <input type="password" nz-input formControlName="password" placeholder="Password" minlength="6" />
-              </nz-input-group>
-            </nz-form-control>
-          </nz-form-item>
-          <nz-form-item>
-            <nz-form-control>
-              <label nz-checkbox formControlName="remember">
-                <span>Remember me</span>
-              </label>
-              <!--        <a class="login-form-forgot" class="login-form-forgot">Forgot password</a>-->
-              <button nz-button class="login-form-button" [nzType]="'primary'">Log in</button>
-              Or
-              <a [routerLink]="['/', 'user', 'signup']">register now!</a>
-            </nz-form-control>
-          </nz-form-item>
-        </form>
+            <h6 *ngIf="error">{{error}}</h6>
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input a valid Email!">
+                <nz-input-group nzPrefixIcon="user">
+                  <input type="text" nz-input formControlName="email" placeholder="example@example.com" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input at least 6 character Password!">
+                <nz-input-group nzPrefixIcon="lock">
+                  <input type="password" nz-input formControlName="password" placeholder="Password" minlength="6" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control>
+                <label nz-checkbox formControlName="remember">
+                  <span>Remember me</span>
+                </label>
+                <!--        <a class="login-form-forgot" class="login-form-forgot">Forgot password</a>-->
+                <button nz-button class="login-form-button" [nzType]="'primary'">Sign in</button>
+                Or
+                <a [routerLink]="['/', 'user', 'signup']">register now!</a>
+              </nz-form-control>
+            </nz-form-item>
+          </form>
+        </nz-card>
       </div>
     </div>
   </div>

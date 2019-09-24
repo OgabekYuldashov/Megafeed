@@ -1,33 +1,43 @@
-<div class="d-flex justify-content-center">
+<div class="container" style=" height: 100%;">
+  <div class="row h-100">
+    <div class="col-12 my-auto">
+      <div class="d-flex justify-content-center">
+        <nz-card>
+          <form nz-form [formGroup]="signupForm" class="login-form" (ngSubmit)="onFormSubmit()" style="width: 500rem">
+            <h1 class="sitetitle text-center">Sign Up</h1>
 
-  <form nz-form [formGroup]="signupForm" class="login-form" (ngSubmit)="onFormSubmit()">
-    <h1 class="sitetitle text-center">Sign Up</h1>
-
-    <nz-form-item>
-<!--      <nz-form-control nzErrorTip="{{emailError}}">-->
-      <nz-form-control nzErrorTip="Email is invalid or in use">
-        <nz-input-group nzPrefixIcon="user">
-          <input type="text" nz-input formControlName="email" placeholder="example@example.com"/>
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Please input at least 6 character Password!">
-        <nz-input-group nzPrefixIcon="lock">
-          <input type="password" nz-input formControlName="password" placeholder="Password" minlength="6"/>
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control>
-        <!--<label nz-checkbox formControlName="remember">
-          <span>Remember me</span>
-        </label>-->
-        <p class="text-danger text-center">{{errorMsg}}</p>
-        <button nz-button class="login-form-button" [nzType]="'primary'">Sign Up</button>
-        Or
-        <a [routerLink]="['/', 'user', 'signin']">Sign In now!</a>
-      </nz-form-control>
-    </nz-form-item>
-  </form>
+            <h6>{{errorMsg}}</h6>
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input a valid Email!">
+                <nz-input-group nzPrefixIcon="user">
+                  <input type="text" nz-input formControlName="email" placeholder="example@example.com"/>
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input at least 6 character Password!">
+                <nz-input-group nzPrefixIcon="lock">
+                  <input type="password" nz-input formControlName="password" placeholder="Password" minlength="6"/>
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please accept the terms and conditions">
+                <label nz-checkbox [nzChecked]="true" formControlName="cbxAgreement">
+                  <span>I accept the terms and conditions</span>
+                </label>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control>
+                <button nz-button class="login-form-button" [nzType]="'primary'">Sign Up</button>
+                Or
+                <a [routerLink]="['/', 'user', 'signin']">sign in now!</a>
+              </nz-form-control>
+            </nz-form-item>
+          </form>
+        </nz-card>
+      </div>
+    </div>
+  </div>
 </div>
