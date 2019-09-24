@@ -28,6 +28,7 @@ router.post('/', (req, res) => {
         });
         post.save((err, doc) => {
             if (err) throw err;
+            console.log(doc);
             return res.status(200).json({
                 status: 'success',
                 data: doc
@@ -86,9 +87,10 @@ router.get('/:_id', async (req, res) =>  {
    // // posts = await Post.find({}, { sort: { _id: -1 } });
    //  posts = await Post.find({'_id' : id});
    //  return res.status(200).json(posts);
-
+     console.log(req.params._id);
     try {
-        const posts = await Post.findById(req.query._id);
+        const posts = await Post.findById(req.params._id);
+        console.log(posts);
         res.status(200).json(posts);
     }
     catch (error) {

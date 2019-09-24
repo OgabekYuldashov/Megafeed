@@ -14,7 +14,7 @@ export class ShowPostComponent implements OnInit {
   // @ts-ignore
   // @ViewChild('closeBtn') closeBtn: ElementRef;
 
-  public posts: any [];
+  public posts;
   // tslint:disable-next-line:variable-name
   public post_to_delete;
 
@@ -41,7 +41,7 @@ export class ShowPostComponent implements OnInit {
   getAllPost() {
     this.showPostService.getAllPost().subscribe(result => {
       console.log('result is ', result);
-      this.posts = result['data'];
+      this.posts = result;
     });
   }
 

@@ -36,8 +36,10 @@ export class AddPostComponent implements OnInit {
           this.commonService.notifyPostAddition();
         });
       } else {
-        this.addPostService.addPost(this.post).subscribe(res => {
+        this.addPostService.addPost(this.post).subscribe((res: any) => {
+          const pid = res.data._id;
           this.commonService.notifyPostAddition();
+          this.router.navigate(['/', 'posts', pid]);
         });
       }
     } else {

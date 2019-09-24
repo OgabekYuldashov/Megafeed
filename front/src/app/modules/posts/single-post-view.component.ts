@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SinglePostViewService} from '../../services/single-post-view.service';
 import {CommonService} from '../../services/common.service';
 import {Post} from '../../models/post.model';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-single-post-view',
@@ -12,21 +13,24 @@ import {Post} from '../../models/post.model';
 })
 export class SinglePostViewComponent implements OnInit {
   public postId;
-  public post: any;
-  constructor(private route: ActivatedRoute, private singlePostViewService: SinglePostViewService, private commonService: CommonService) {
+  public posts;
+  constructor(private route: ActivatedRoute, private singlePostViewService: SinglePostViewService,
+              private commonService: CommonService) {
     this.postId = this.route.snapshot.params._id;
-
-
   }
 
   ngOnInit() {
-    this.getPostbyId();
+    this.getPostbyId(this.postId);
+
+    this.commonService.postAdded_Observable.subscribe(res => {
+      this.getPostbyId(this.postId);
+    });
   }
 
-  getPostbyId() {
-    this.singlePostViewService.getPostbyId().subscribe(result => {
+  getPostbyId(postId) {
+    this.singlePostViewService.getPostbyId(postId).subscribe(result => {
       console.log('result is ', result);
-      this.post = result['data'];
+      this.posts = result;
     });
   }
 
