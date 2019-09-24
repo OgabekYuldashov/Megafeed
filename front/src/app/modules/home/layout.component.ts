@@ -6,11 +6,7 @@ import {AuthService} from '../../services/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './layout.component.html',
-  styles: [
-      `
-    `
-
-  ]
+  styles: []
 })
 export class LayoutComponent {
   title = 'front';

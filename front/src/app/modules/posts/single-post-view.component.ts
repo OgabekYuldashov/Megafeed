@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SinglePostViewService} from '../../services/single-post-view.service';
-import {CommonService} from '../../services/common.service';
 import {PostModel} from '../../models/post.model';
 
 @Component({
@@ -13,17 +12,16 @@ import {PostModel} from '../../models/post.model';
 export class SinglePostViewComponent implements OnInit {
   public postId;
   public posts;
-  constructor(private route: ActivatedRoute, private singlePostViewService: SinglePostViewService,
-              private commonService: CommonService) {
+  constructor(private route: ActivatedRoute, private singlePostViewService: SinglePostViewService) {
     this.postId = this.route.snapshot.params._id;
   }
 
   ngOnInit() {
     this.getPostbyId(this.postId);
 
-    this.commonService.postAdded_Observable.subscribe(res => {
-      this.getPostbyId(this.postId);
-    });
+    // this.commonService.postAdded_Observable.subscribe(res => {
+    //   this.getPostbyId(this.postId);
+    // });
   }
 
   getPostbyId(postId) {

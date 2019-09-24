@@ -7,7 +7,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {registerLocaleData} from '@angular/common';
 import en from '@angular/common/locales/en';
-import {CommonService} from './services/common.service';
 import {en_US, NZ_I18N, NzIconModule} from 'ng-zorro-antd';
 import {JwtModule} from '@auth0/angular-jwt';
 import {conf} from './config';
@@ -24,7 +23,6 @@ export function tokenGetter() {
   declarations: [
     LayoutComponent,
     IsVisibleDirective,
-
   ],
   imports: [
     BrowserModule,
@@ -44,8 +42,7 @@ export function tokenGetter() {
     NzIconModule,
     AuthModule
   ],
-  providers: [{provide: NZ_I18N, useValue: en_US},
-    CommonService],
+  providers: [{provide: NZ_I18N, useValue: en_US}],
   bootstrap: [LayoutComponent]
 })
 export class AppModule {

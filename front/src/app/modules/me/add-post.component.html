@@ -1,0 +1,51 @@
+<form>
+  <div class="container">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-12">
+          <div class="mainheading">
+            <app-post-autor-info [authorInfo]="authorInfo"></app-post-autor-info>
+          </div>
+
+          <div class="posttitle mb-4">
+            <label>Title: </label>
+            <input name="title " type="text" [(ngModel)]="post.title" class="form-control" placeholder="Enter title"> 
+          </div>
+
+          <div class="posttitle mb-4">
+            <label>Short Description: </label>
+            <input name="shortDescription" type="text" [(ngModel)]="post.shortDescription" class="form-control" placeholder="Enter short Description">
+          </div>
+
+          <div class="posttitle mb-4">
+            <label>Description</label>
+            <editor name="description"  [(ngModel)]="post.description" [init]="{skin_url: '../assets/skins/ui/oxide',
+                                 content_css: '../assets/skins/ui/oxide/content.min.css', height: 730}"></editor>
+            <!-- <textarea name="description" [(ngModel)]="post.description" class="form-control"
+                id="exampleInputPassword1" col="15" rows="20">
+            </textarea> -->
+          </div>
+
+          <div class="posttitle mb-4">
+            <label>Image URL: </label>
+            <input name="imageUrl" type="text" [(ngModel)]="post.imageUrl" class="form-control" placeholder="Please paste Image URL">
+          </div>
+
+
+          <div class="posttitle mb-4">
+            <label>Keywords: </label>
+            <input name="keywords" type="text" [(ngModel)]="post.keywords" class="form-control" placeholder="Enter keywords separated by comma">
+          </div>
+
+          <div class="addbtn">
+            <button (click)="addOrEditPost()" type="button" class="btn btn-primary">Publish post</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+<script src="https://cdn.bootcss.com/bootstrap-fileinput/4.4.2/js/fileinput.min.js"></script>

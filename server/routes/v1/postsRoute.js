@@ -13,49 +13,6 @@ const mongoose = require('mongoose');
 
 // 3. ROUTES
 
-//POST '/'  add post
-router.post('/', (req, res) => {
-    mongoose.connect(url, { useMongoClient: true, useUnifiedTopology: true }, function (err) {
-        if (err) throw err;
-        const post = new Post({
-            title: req.body.title,
-            shortDescription: req.body.shortDescription,
-            description: req.body.description,
-            imageUrl: req.body.imageUrl,
-            keywords: req.body.keywords,
-            author: {imageUrl: req.body.author.imageUrl,
-                name: req.body.author.name}
-        });
-        post.save((err, doc) => {
-            if (err) throw err;
-            console.log(doc);
-            return res.status(200).json({
-                status: 'success',
-                data: doc
-            })
-        })
-    });
-});
-
-//PATCH '/'  update
-router.patch('/', (req, res) => {
-    mongoose.connect(url, { useMongoClient: true }, function (err) {
-        if (err) throw err;
-        Post.update(
-            { _id: req.body.id },
-            {
-                title: req.body.title, description:
-                    req.body.description, imageUrl: req.body.imageUrl, keywords: req.body.keywords
-            },
-            (err, doc) => {
-                if (err) throw err;
-                return res.status(200).json({
-                    status: 'success',
-                    data: doc
-                })
-            })
-    });
-});
 
 
 //DELETE '/:pid'
