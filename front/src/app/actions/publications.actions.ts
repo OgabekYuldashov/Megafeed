@@ -9,21 +9,21 @@ export function addPublication(newPost: PostModel) {
     return {
         type: ADD,
         payload: newPost
-    }
+    };
 }
 
 export function editPublication(post: PostModel) {
     return {
         type: EDIT,
         payload: post
-    }
+    };
 }
 
 export function removePublication(postId: string) {
     return {
         type: REMOVE,
         payload: postId
-    }
+    };
 }
 
 export function loadPublications(posts: PostModel[]) {

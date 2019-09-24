@@ -6,7 +6,8 @@ const ObjectId = Schema.ObjectId;
 const userSchema = new Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    name: { type: String },
+    name: { type: String, default: 'Please, update your name' },
+    bio: { type: String, default: 'Please, update your info' },
     following: {type: Array, default: []}
 }, { collection : 'users' });
 
