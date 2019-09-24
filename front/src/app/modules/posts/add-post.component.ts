@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-post',
-  templateUrl: './add-post.component2.html',
+  templateUrl: './add-post.component.html',
   styleUrls: ['./add-post.component.css'],
   providers: [ AddPostService ]
 })
