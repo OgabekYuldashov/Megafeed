@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Post } from '../models/post.model';
+import { PostModel } from '../models/post.model';
 
 @Injectable()
 export class AddPostService {
@@ -9,7 +9,7 @@ export class AddPostService {
 
   }
 
-  addPost(post: Post) {
+  addPost(post: PostModel) {
     return this.http.post('http://localhost:9090/api/v1/posts/', {
       title: post.title,
       shortDescription: post.shortDescription.replace(/<[^>]*>/ig, ' ')
@@ -29,7 +29,7 @@ export class AddPostService {
       }
     });
   }
-  updatePost(post: Post) {
+  updatePost(post: PostModel) {
     // @ts-ignore
     return this.http.post('http://localhost:9090/api/v1/posts/', {
       title : post.title,

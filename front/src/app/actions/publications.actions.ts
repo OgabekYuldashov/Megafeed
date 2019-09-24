@@ -1,18 +1,18 @@
-import { Post } from '../models/post.model';
+import { PostModel } from '../models/post.model';
 
 export const ADD =      '[publications] Add';
 export const EDIT =     '[publications] Edit';
 export const REMOVE =   '[publications] Remove';
 export const LOAD =     '[publications] Load';
 
-export function addPublication(newPost: Post) {
+export function addPublication(newPost: PostModel) {
     return {
         type: ADD,
         payload: newPost
     }
 }
 
-export function editPublication(post: Post) {
+export function editPublication(post: PostModel) {
     return {
         type: EDIT,
         payload: post
@@ -26,7 +26,7 @@ export function removePublication(postId: string) {
     }
 }
 
-export function loadPublications(posts: Post[]) {
+export function loadPublications(posts: PostModel[]) {
     return {
         type: LOAD,
         payload: posts
