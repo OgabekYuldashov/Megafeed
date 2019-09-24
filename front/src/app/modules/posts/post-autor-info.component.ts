@@ -8,9 +8,9 @@ import { AuthorInfoModel } from 'src/app/models/authorInfo.model';
 })
 export class PostAutorInfoComponent implements OnInit {
 
-  @Input() authorInfo: AuthorInfoModel
-
-  constructor() { }
+  @Input() authorInfo: AuthorInfoModel;
+  constructor() {
+  }
 
   ngOnInit() {
   }

@@ -36,6 +36,23 @@ router.get('/', async (req, res) =>  {
     return res.status(200).json(posts);
 })
 
+// Get post by authorId
+router.get('/', async (req, res) =>  {
+    console.log(req.params._id);
+    try {
+        const posts = await Post.find({"author" : {$elemMatch:{"_id": req.params._id }}});
+        console.log(posts);
+        res.status(200).json(posts);
+    }
+    catch (error) {
+        console.error(error);
+        if (error.name === 'CastError') {
+            res.status(404).send('PostModel by authorId, not found');
+        } else
+            res.status(500).send('Error getting post by authorId');
+    }
+})
+
 //Get post by id
 router.get('/:_id', async (req, res) =>  {
 

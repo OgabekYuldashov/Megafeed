@@ -8,8 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { AddEditPostComponent } from './add-post.component';
 import { PostsComponent } from './posts.component';
-import { PostsModule } from '../posts/posts.module';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import {PostsModule} from '../posts/posts.module';
 
 @NgModule({
   declarations: [
@@ -21,21 +21,22 @@ import { EditorModule } from '@tinymce/tinymce-angular';
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: 'bookmarks', component: BookmarksComponent  },
+      {path: 'bookmarks', component: BookmarksComponent},
+      { path: 'posts', component: PostsComponent  },
       // { path: 'posts', component: PostsComponent, canActivate: [ProtectedPageGuard] },
       // { path: 'post', component: AddEditPostComponent, canActivate: [ProtectedPageGuard] },
-      { path: 'profile', component: EditProfileComponent, canActivate: [ProtectedPageGuard] },
+      {path: 'profile', component: EditProfileComponent, canActivate: [ProtectedPageGuard]},
     ]),
     FormsModule,
     NgZorroAntdModule,
     EditorModule,
-    PostsModule
+    PostsModule,
   ],
   exports: [
   ]
 })
 export class MeModule {
-  constructor(){
-    console.log("Me module");
+  constructor() {
+    console.log('Me module');
   }
 }

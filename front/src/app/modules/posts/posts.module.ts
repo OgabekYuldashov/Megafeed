@@ -29,7 +29,7 @@ import { PostAutorInfoComponent } from './post-autor-info.component';
     NzIconModule,
     NzMessageModule,
     RouterModule.forChild([
-      { path: 'posts', component: PostsfeedComponent },
+      // { path: 'posts', component: PostsfeedComponent },
       { path: 'posts/:category', component: PostsfeedComponent },
       { path: 'posts/view/:_id', component: SinglePostViewComponent },
     ])
@@ -38,7 +38,8 @@ import { PostAutorInfoComponent } from './post-autor-info.component';
     NzMessageService
   ],
   exports: [
-    PostAutorInfoComponent
+    PostAutorInfoComponent,
+    ListPostComponent
   ]
 })
 export class PostsModule { }
