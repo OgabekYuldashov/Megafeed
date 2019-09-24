@@ -62,7 +62,7 @@ router.patch('/', (req, res) => {
 // router.delete('/:pid', (req, res) => {
 //     mongoose.connect(url, { useMongoClient: true }, function (err) {
 //         if (err) throw err;
-//         Post.findByIdAndRemove(req.body.id,
+//         PostModel.findByIdAndRemove(req.body.id,
 //             (err, doc) => {
 //                 if (err) throw err;
 //                 return res.status(200).json({
@@ -84,8 +84,8 @@ router.get('/:_id', async (req, res) =>  {
 
    //  let id =  req.params;
    //  console.log(id);
-   // // posts = await Post.find({}, { sort: { _id: -1 } });
-   //  posts = await Post.find({'_id' : id});
+   // // posts = await PostModel.find({}, { sort: { _id: -1 } });
+   //  posts = await PostModel.find({'_id' : id});
    //  return res.status(200).json(posts);
      console.log(req.params._id);
     try {
@@ -96,7 +96,7 @@ router.get('/:_id', async (req, res) =>  {
     catch (error) {
         console.error(error);
         if (error.name === 'CastError') {
-            res.status(404).send('Post by Id, not found');
+            res.status(404).send('PostModel by Id, not found');
         } else
             res.status(500).send('Error getting post by Id');
     }
@@ -113,7 +113,7 @@ router.get('/:_id', (req, res) => {
 
     // mongoose.connect(url, { useMongoClient: true }, function (err) {
     //     if (err) throw err;
-    //     Post.find({}, [], { sort: { _id: -1 } }, (err, doc) => {
+    //     PostModel.find({}, [], { sort: { _id: -1 } }, (err, doc) => {
     //         if (err) throw err;
     //         return res.status(200).json({
     //             status: 'success',

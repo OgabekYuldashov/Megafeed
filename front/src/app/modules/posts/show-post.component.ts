@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShowPostService} from '../../services/show-post.service';
 import {CommonService} from '../../services/common.service';
-import {Post} from '../../models/post';
+import {PostModel} from '../../models/post.model';
 
 @Component({
   selector: 'app-show-post',
@@ -30,7 +30,7 @@ export class ShowPostComponent implements OnInit {
     });
   }
 
-  setDelete(post: Post) {
+  setDelete(post: PostModel) {
     this.post_to_delete = post;
   }
 
@@ -45,7 +45,7 @@ export class ShowPostComponent implements OnInit {
     });
   }
 
-  editPost(post: Post) {
+  editPost(post: PostModel) {
     this.commonService.setPostToEdit(post);
   }
 

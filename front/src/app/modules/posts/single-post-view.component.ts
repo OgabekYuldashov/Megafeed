@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SinglePostViewService} from '../../services/single-post-view.service';
 import {CommonService} from '../../services/common.service';
-import {Post} from '../../models/post';
+import {PostModel} from '../../models/post.model';
 import {HttpClient} from '@angular/common/http';
 
 @Component({

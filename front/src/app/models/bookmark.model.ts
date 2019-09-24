@@ -6,5 +6,5 @@ export interface BookmarkModel {
         _id: string;
         title: string;
         shortDescription: string;
-    }
+    };
 }

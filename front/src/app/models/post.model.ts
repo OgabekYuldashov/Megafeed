@@ -1,4 +1,4 @@
-export class Post {
+export class PostModel {
   constructor() {
     this._id = '';
     this.title = '';
