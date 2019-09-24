@@ -14,6 +14,7 @@ export class BookmarksComponent implements OnInit {
   private unsubscribe;
 
   constructor(private bookmarksService: BookmarksService, private notification: NzNotificationService) {
+    console.log('bookmarks component');
     this.bookmarksService.getBookmarksList();
     this.notification.config({
       nzPlacement: 'bottomRight'
