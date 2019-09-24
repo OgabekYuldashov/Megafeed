@@ -21,6 +21,7 @@ router.use(expressJwt({ secret: SECRET_KEY }).unless({
 
 // 3. ROUTES
 router.use('/posts', require('./postsRoute'));
+router.use('/publications', require('./publicationsRoute'));
 router.use('/bookmarks', require('./bookmarksRoute'));
 router.use('/users', require('./usersRoute'));
 

@@ -1,0 +1,18 @@
+<!-- Begin Top Meta -->
+<div class="container-fluid">
+    <div class="row post-top-meta">
+        <div class="col-md-2">
+            <a [routerLink]="['/user', authorInfo._id]"><img class="author-thumb" src="{{authorInfo.imageUrl}}" alt="{{authorInfo.name}}"></a>
+        </div>
+        <div class="col-md-10">
+            <a class="link-dark" [routerLink]="['/user', authorInfo._id]">{{authorInfo.name}}</a><a href="#" class="btn follow">Follow</a>
+            <div>
+                <span class="author-description">{{authorInfo.bio}}</span>
+            </div>
+            <div>
+                <span class="post-date">{{authorInfo.pudlishDate | date}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Top Menta -->

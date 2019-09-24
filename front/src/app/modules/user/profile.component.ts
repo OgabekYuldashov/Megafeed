@@ -10,18 +10,18 @@ import {Router} from '@angular/router';
           <p class="text-gray-dark">{{user.email}}</p>
           <hr>
           <p class="nav-item">
-              <a class="nav-link" #addPost [routerLink]="['posts', 'add-post']">Add post</a>
+              <a class="nav-link" #addPost [routerLink]="['me', 'post']">Add post</a>
           </p>
           <p class="nav-item">
-              <a class="nav-link" [routerLink]="['posts', 'add-post']">My posts</a>
+              <a class="nav-link" [routerLink]="['/me', 'posts']">My posts</a>
           </p>
           <p>
               <a class="nav-link" [routerLink]="['me', 'bookmarks']">My bookmarks</a>
           </p>
+          <hr>
           <p>
               <a class="nav-link" [routerLink]="['me', 'profile']">My Profile</a>
           </p>
-          <hr>
           <p><a (click)="onLogout()" class="nav-link" href="#">Logout</a></p>
       </nz-card>
   `,

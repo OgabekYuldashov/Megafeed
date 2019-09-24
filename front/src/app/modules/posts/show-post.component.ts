@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ShowPostService} from '../../services/show-post.service';
-import {CommonService} from '../../services/common.service';
 import {PostModel} from '../../models/post.model';
 
 @Component({
@@ -18,16 +17,16 @@ export class ShowPostComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   public post_to_delete;
 
-  constructor(private showPostService: ShowPostService, private commonService: CommonService) {
+  constructor(private showPostService: ShowPostService) {
 
   }
 
   ngOnInit() {
     this.getAllPost();
 
-    this.commonService.postAdded_Observable.subscribe(res => {
-      this.getAllPost();
-    });
+    // this.commonService.postAdded_Observable.subscribe(res => {
+    //   this.getAllPost();
+    // });
   }
 
   setDelete(post: PostModel) {
@@ -46,7 +45,7 @@ export class ShowPostComponent implements OnInit {
   }
 
   editPost(post: PostModel) {
-    this.commonService.setPostToEdit(post);
+    // this.commonService.setPostToEdit(post);
   }
 
   deletePost() {

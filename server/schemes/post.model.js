@@ -8,12 +8,16 @@ const postModel = new Schema({
     shortDescription: { type: String, required: false },
     description: { type: String, required: false },
     imageUrl: { type: String, required: false },
-    keywords: { type: Array, required: false },
+    keywords: { type: String, required: false },
+    postDate: { type: Date, required: true },
     author: {
-        imageUrl: { type: String, required: false},
-        name: { type: String, required: false}
+        _id: { type: String, required: true },
+        name: { type: String, required: false },
+        imageUrl: { type: String, required: false },
+        bio: { type: String, default: 'Please, update your info' },
     },
-}, { collection : 'post' });
+}, { collection: 'post' });
 
 const Post = mongoose.model('Post', postModel);
+
 module.exports = Post;
