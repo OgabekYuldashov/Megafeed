@@ -100,7 +100,7 @@ router.get('/:_id', async (req, res) =>  {
         } else
             res.status(500).send('Error getting post by Id');
     }
-})
+});
 
 
 

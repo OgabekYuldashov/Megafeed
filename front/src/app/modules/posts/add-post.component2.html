@@ -1,0 +1,129 @@
+<!-- Begin Article
+================================================== -->
+<div class="container">
+
+  <div class="row">
+
+
+    <!-- Begin Post -->
+    <div class="col-md-8 col-md-offset-2 col-xs-12">
+
+      <div class="mainheading">
+
+        <!-- Begin Top Meta -->
+        <div class="row post-top-meta">
+          <div class="col-md-2">
+            <a href="author.html"><img class="author-thumb"
+                                       src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x"
+                                       alt="Sal"></a>
+          </div>
+          <div class="col-md-10">
+            <a class="link-dark" href="author.html">Sal</a><a href="#" class="btn follow">Follow</a>
+            <span class="author-description">Founder of WowThemes.net and creator of <b>"Mediumish"</b> theme that
+                you're currently previewing. Developing professional premium themes, templates, plugins, scripts since
+                2012.</span>
+            <span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">6 min
+                read</span>
+          </div>
+        </div>
+        <!-- End Top Menta -->
+
+        <!--        <h1 class="posttitle">18 Things You Should Learn Before Moving Into a New Home</h1>-->
+
+      </div>
+
+      <!--       Begin Featured Image-->
+      <!--      <div class="featured-image img-fluid">-->
+      <!--        <label for="exampleInputEmail1">Image: </label>-->
+      <!--        <input name="image" type="text" [(ngModel)]="post.imageUrl" class="form-control" aria-describedby="emailHelp" placeholder="Upload Image : ">-->
+      <!--      </div>-->
+
+      <!--      <label for="exampleInputEmail1">Image Demo: </label>-->
+      <!--      <img class="featured-image img-fluid" src="assets/img/demopic/10.jpg" alt="">-->
+      <!--        <img class="featured-image img-fluid" src="post.imageUrl" alt="">-->
+      <!--      <img class="featured-image img-fluid" *ngIf="avatarUrl" [src]="avatarUrl"  class="avatar" />-->
+
+      <!--      <div >-->
+      <!--        <input id="myFile" type="file" name="myFile" multiple class="file-loading">-->
+      <!--      </div>-->
+
+
+      <!-- End Featured Image -->
+
+      <!-- Begin Post Content -->
+      <div class="article-post">
+        <app-upload name="imageUrl" class="form-control"></app-upload>
+
+        <form nz-form [formGroup]="newPostForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <div class="posttitle">
+              <label for="exampleInputEmail1">Title: </label>
+              <input name="title" type="text" [(ngModel)]="post.title" class="form-control" id="exampleInputEmail1"
+                     formControlName="title" aria-describedby="emailHelp" placeholder="Enter title">
+            </div>
+
+            <div class="posttitle">
+              <label for="exampleInputEmail1">Short Description: </label>
+              <input name="shortDescription" type="text" [(ngModel)]="post.shortDescription" class="form-control"
+                     id="exampleInputEmail2"
+                     formControlName="shortDescription" aria-describedby="emailHelp"
+                     placeholder="Enter short Description">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1">Description</label>
+            <!--            <editor name="description" [(ngModel)]="post.description" class="form-control" id="exampleInputPassword1"-->
+            <!--              [init]="{skin_url: '../assets/skins/ui/oxide',-->
+            <!--                    content_css: '../assets/skins/ui/oxide/content.min.css', height: 730}"-->
+            <!--                    ></editor>-->
+            <textarea formControlName="description" name="description" [(ngModel)]="post.description"
+                      class="form-control" id="exampleInputPassword1"
+                      col="15" rows="20">
+            </textarea>
+          </div>
+
+          <div>
+            <div formArrayName="keywords">
+              <h3>Keywords:</h3>
+              <div class="form-group" *ngFor="let keyword of newPostForm.get('keywords').controls; let i = index">
+                <input type="text" class="form-control" formControlName="{{i}}">
+              </div>
+            </div>
+            <button type="button" class="btn btn-group" (click)="onAddKeywords()">Add Keyword</button>
+          </div>
+
+          <div class="addbtn">
+            <button type="submit" class="btn btn-primary">Post Article</button>
+          </div>
+        </form>
+
+
+      </div>
+
+      <!--        <div class="posttitle">-->
+      <!--          <label for="exampleInputEmail1">Key words: </label>-->
+      <!--          <input name="keywords" type="text" [(ngModel)]="post.keywords" class="form-control" id="exampleInputEmail3"-->
+      <!--                 aria-describedby="emailHelp" placeholder="Enter keywords">-->
+      <!--        </div>-->
+
+      <!-- End Post Content -->
+
+
+    </div>
+    <!-- End Post -->
+
+
+  </div>
+
+
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+
+<script src="https://cdn.bootcss.com/bootstrap-fileinput/4.4.2/js/fileinput.min.js"></script>

@@ -9,14 +9,10 @@ export class AddPostService {
 
   }
 
-  addPost(post: PostModel) {
-    return this.http.post('http://localhost:9090/api/v1/posts/', {
+  addPost(post: any) {
+    return this.http.post('http://localhost:9090/api/v1/posts', {
       title: post.title,
-      shortDescription: post.shortDescription.replace(/<[^>]*>/ig, ' ')
-        .replace(/<\/[^>]*>/ig, ' ')
-        .replace(/&nbsp;|&#160;/gi, ' ')
-        .replace(/\s+/ig, ' ')
-        .trim(),
+      shortDescription: post.shortDescription,
       description: post.description,
       // imageUrl: post.imageUrl,
       imageUrl: 'assets/img/demopic/10.jpg',

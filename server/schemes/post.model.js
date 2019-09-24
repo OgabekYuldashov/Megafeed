@@ -8,7 +8,7 @@ const postModel = new Schema({
     shortDescription: { type: String, required: false },
     description: { type: String, required: false },
     imageUrl: { type: String, required: false },
-    keywords: { type: String, required: false },
+    keywords: { type: Array, required: false },
     author: {
         imageUrl: { type: String, required: false},
         name: { type: String, required: false}
