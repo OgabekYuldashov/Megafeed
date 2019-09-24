@@ -1,24 +1,42 @@
-<!--<div class="container">-->
-<!--      <div class="card" style="width: 60rem;">-->
-<!--        <div class="card-body">-->
-<!--          <h5 class="card-title">title</h5>-->
-<!--          <p class="card-text">description</p>-->
-<!--          <a href="#" class="btn btn-primary">Open</a>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--</div>-->
-
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col-9">
       <div *ngFor="let post of posts" class="mainheading">
         <h1 class="sitetitle">{{post.title}}</h1>
         <p class="lead">
-         {{post.description}}
+          {{post.shortDescription}}
         </p>
-        <p><button type="button" (click)="openPost(post._id)" class="btn-link">Open</button></p>
+        <p>
+          <a [routerLink]="['/', 'posts', 'view', post._id]" class="btn-link">Read publication</a>
+          <button type="button" (click)="removePublication(post._id)" class="btn-link ml-3">remove publication</button>
+        </p>
       </div>
       <hr>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <div class="mainheading">
+        <h1 class="sitetitle">My posts</h1>
+        <p class="lead">
+          All your publications
+        </p>
+      </div>
+
+      <div *ngFor="let post of posts" class="mb-5">
+        <h4>{{post.title}}</h4>
+        <p style="font-size: 1.2em;">{{post.shortDescription}}</p>
+        <small>{{post.postDate | date:'medium'}}</small>
+        <p>
+          <a [routerLink]="['/', 'posts', 'view', post._id]" class="btn-link">Read publication</a>
+          <button type="button" (click)="removePublication(post._id)" class="btn-link ml-3">remove publication</button>
+        </p>
+        <hr>
+      </div>
     </div>
   </div>
 </div>

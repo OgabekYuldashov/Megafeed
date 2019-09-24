@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
               <a class="nav-link" #addPost [routerLink]="['me', 'post']">Add post</a>
           </p>
           <p class="nav-item">
-              <a class="nav-link" [routerLink]="['/me', 'posts']">My posts</a>
+              <a class="nav-link" [routerLink]="['/me', 'myposts']">My posts</a>
           </p>
           <p>
               <a class="nav-link" [routerLink]="['me', 'bookmarks']">My bookmarks</a>
@@ -60,6 +60,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.auth.getActiveUser();
-    console.log(this.user);
+    // console.log(this.user);
   }
 }

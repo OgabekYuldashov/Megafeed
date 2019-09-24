@@ -4,6 +4,8 @@ import { PostPreviewModel } from '../models/postPreview.model';
 import { PostsState } from '../reducers/posts';
 import { postsStore } from '../store';
 import { loadPostsPreviews } from './../actions/postPreview';
+import { PostModel } from '../models/post.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -16,6 +18,10 @@ export class PostsService {
         this.http.get("http://localhost:9090/api/v1/posts", { params: params }).subscribe((data: PostPreviewModel[]) => {
             postsStore.dispatch(loadPostsPreviews(data));
         });
+    }
+
+    getPostbyId(postId: string): Observable<PostModel> {
+        return this.http.get<PostModel>('http://localhost:9090/api/v1/posts/' + postId, {});
     }
 
 }

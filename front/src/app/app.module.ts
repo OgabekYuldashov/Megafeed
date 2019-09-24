@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-import {AppRoutingModule} from './app-routing.module';
+// import {AppRoutingModule} from './app-routing.module';
 import {LayoutComponent} from './modules/home/layout.component';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -12,6 +12,7 @@ import {JwtModule} from '@auth0/angular-jwt';
 import {conf} from './config';
 import {UserModule} from './modules/user/user.module';
 import { IsVisibleDirective } from './directives/is-visible.directive';
+import { RouterModule } from '@angular/router';
 
 registerLocaleData(en);
 
@@ -26,7 +27,7 @@ export function tokenGetter() {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    // AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     JwtModule.forRoot({
@@ -40,7 +41,12 @@ export function tokenGetter() {
       }
     }),
     NzIconModule,
-    UserModule
+    UserModule,
+    RouterModule.forRoot([
+      { path: 'user', loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule) },
+      { path: 'me', loadChildren: () => import('./modules/me/me.module').then(m => m.MeModule) },
+      { path: '', loadChildren: () => import('./modules/posts/posts.module').then(m => m.PostsModule2) },
+    ])
   ],
   providers: [{provide: NZ_I18N, useValue: en_US}],
   bootstrap: [LayoutComponent]
