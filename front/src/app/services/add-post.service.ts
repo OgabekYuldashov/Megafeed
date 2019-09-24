@@ -12,7 +12,7 @@ export class AddPostService {
   addPost(post: Post) {
     return this.http.post('http://localhost:9090/api/v1/posts/', {
       title: post.title,
-      shortDescription: post.shortDescription,
+      shortDescription: post.shortDescription.replace(/<.*?>/ig, ''),
       description: post.description,
       // imageUrl: post.imageUrl,
       imageUrl: 'assets/img/demopic/10.jpg',
@@ -29,7 +29,7 @@ export class AddPostService {
     // @ts-ignore
     return this.http.post('http://localhost:9090/api/v1/posts/', {
       title : post.title,
-      shortDescription : post.shortDescription,
+      shortDescription : post.shortDescription.replace(/<.*?>/ig, ''),
       description : post.description,
       // imageUrl: post.imageUrl,
       imageUrl : 'assets/img/demopic/10.jpg',

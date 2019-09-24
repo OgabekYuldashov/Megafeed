@@ -15,6 +15,9 @@ export function reducer(state = initialState, action): BookmarksState {
         case bookmarksActions.ADD: {
             return Add(state, action.payload);
         }
+        case bookmarksActions.REMOVE: {
+            return Remove(state, action.payload);
+        }
         case bookmarksActions.LOAD: {
             return Load(state, action.payload);
         }
@@ -26,6 +29,10 @@ export function reducer(state = initialState, action): BookmarksState {
 
 function Add(state: BookmarksState, newBookmark: BookmarkModel): BookmarksState {
     return Object.assign({}, state, { bookmarks: [...state.bookmarks, newBookmark] });
+}
+
+function Remove(state: BookmarksState, bookmarkId: string): BookmarksState {
+    return Object.assign({}, state, { bookmarks: state.bookmarks.filter(x => x._id != bookmarkId) });
 }
 
 function Load(state: BookmarksState, bookmarks: BookmarkModel[]): BookmarksState {

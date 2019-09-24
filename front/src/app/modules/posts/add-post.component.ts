@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { AddPostService } from '../../services/add-post.service';
-import { Post } from '../../models/post.model';
+import { PostModel } from '../../models/post.model';
 import { Router } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 
@@ -15,10 +15,10 @@ export class AddPostComponent implements OnInit {
 
   // @ts-ignore
   @ViewChild('avatarUrl') avatarUrl: string;
-  public post: Post;
+  public post: PostModel;
 
   constructor(private addPostService: AddPostService, private router: Router, private commonService: CommonService) {
-    this.post = new Post();
+    this.post = new PostModel();
     this.post.imageUrl = this.avatarUrl;
   }
 
@@ -36,8 +36,10 @@ export class AddPostComponent implements OnInit {
           this.commonService.notifyPostAddition();
         });
       } else {
-        this.addPostService.addPost(this.post).subscribe(res => {
+        this.addPostService.addPost(this.post).subscribe((res: any) => {
+          const pid = res.data._id;
           this.commonService.notifyPostAddition();
+          this.router.navigate(['/', 'posts', pid]);
         });
       }
     } else {

@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ShowPostService} from '../../services/show-post.service';
 import {CommonService} from '../../services/common.service';
 import {Post} from '../../models/post.model';
-import { ElementRef} from '@angular/core';
-import { ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-show-post',
@@ -16,7 +14,7 @@ export class ShowPostComponent implements OnInit {
   // @ts-ignore
   // @ViewChild('closeBtn') closeBtn: ElementRef;
 
-  public posts: any [];
+  public posts;
   // tslint:disable-next-line:variable-name
   public post_to_delete;
 
@@ -43,7 +41,7 @@ export class ShowPostComponent implements OnInit {
   getAllPost() {
     this.showPostService.getAllPost().subscribe(result => {
       console.log('result is ', result);
-      this.posts = result['data'];
+      this.posts = result;
     });
   }
 
