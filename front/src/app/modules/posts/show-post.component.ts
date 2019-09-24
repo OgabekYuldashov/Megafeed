@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShowPostService} from '../../services/show-post.service';
 import {CommonService} from '../../services/common.service';
-import {Post} from '../../models/post.model';
+import {Post} from '../../models/post';
 
 @Component({
   selector: 'app-show-post',

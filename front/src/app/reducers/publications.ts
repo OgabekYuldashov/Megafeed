@@ -1,8 +1,8 @@
 import * as publicationsActions from '../actions/publications.actions';
-import { PostModel } from '../models/post.model';
+import { Post } from '../models/post';
 
 export interface PublicationsState {
-    posts: PostModel[];
+    posts: Post[];
 };
 
 const initialState: PublicationsState = {
@@ -29,11 +29,11 @@ export function reducer(state = initialState, action): PublicationsState {
     }
 }
 
-function Add(state: PublicationsState, newPost: PostModel): PublicationsState {
+function Add(state: PublicationsState, newPost: Post): PublicationsState {
     return Object.assign({}, state, { posts: [...state.posts, newPost] });
 }
 
-function Edit(state: PublicationsState, post: PostModel): PublicationsState {
+function Edit(state: PublicationsState, post: Post): PublicationsState {
     var postsFiltered = state.posts.filter(x => x._id != post._id);
     return Object.assign({}, state, { posts: [...postsFiltered, post] });
 }
@@ -42,6 +42,6 @@ function Remove(state: PublicationsState, postId: string): PublicationsState {
     return Object.assign({}, state, { posts: state.posts.filter(x => x._id != postId) });
 }
 
-function Load(state: PublicationsState, posts: PostModel[]): PublicationsState {
+function Load(state: PublicationsState, posts: Post[]): PublicationsState {
     return Object.assign({}, state, { posts: posts });
 }
