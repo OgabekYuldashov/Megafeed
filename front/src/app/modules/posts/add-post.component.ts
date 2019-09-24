@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { AddPostService } from '../../services/add-post.service';
-import { PostModel } from '../../models/post.model';
+import { Post } from '../../models/post.model';
 import { Router } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 
@@ -15,10 +15,10 @@ export class AddPostComponent implements OnInit {
 
   // @ts-ignore
   @ViewChild('avatarUrl') avatarUrl: string;
-  public post: PostModel;
+  public post: Post;
 
   constructor(private addPostService: AddPostService, private router: Router, private commonService: CommonService) {
-    this.post = new PostModel();
+    this.post = new Post();
     this.post.imageUrl = this.avatarUrl;
   }
 
