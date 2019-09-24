@@ -13,7 +13,7 @@ export function getAuthorInfoModel(user: AuthorizedUserModel, pudlishDate: Date)
         _id: user._id,
         name: user.name,
         bio: user.bio,
-        imageUrl: user.imageUrl,
+        imageUrl: user.imgUrl,
         pudlishDate: pudlishDate
     };
 
