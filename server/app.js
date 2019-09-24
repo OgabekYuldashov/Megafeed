@@ -23,11 +23,11 @@ app.disable('x-powered-by');
 app.set('trust proxy', true);
 app.use((req, res, next) => {
     mongoose.set('useCreateIndex', true);
-    mongoose.connect(config.dburl, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
+    mongoose.connect(config.dburl, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, function (err) {
         if (err) throw err;
         next();
     });
-})
+});
 
 // 4. MIDDLEWARE
 app.use(morgan('dev', { stream: logPath }));

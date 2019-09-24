@@ -180,9 +180,9 @@ router.patch('/profile', (req, res, next) => {
         try {
             const jsonBody = req.body;
 
-            const output = await User.findOneAndUpdate({_id: req.user._id}, {name: jsonBody.name, bio: jsonBody.bio, imgUrl: jsonBody.imgUrl});
+            const updatedUser = await User.findOneAndUpdate({_id: req.user._id}, {name: jsonBody.name, bio: jsonBody.bio, imgUrl: jsonBody.imgUrl}, {new: true});
 
-            const token = generateToken(req.user);
+            const token = generateToken(updatedUser);
             res.status(200).json({error: false, message: 'User info updated', data: {token: token}});
 
         } catch (e) {
