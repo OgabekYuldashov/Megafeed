@@ -1,5 +1,5 @@
-//     req.user._id: '5d8924b1e77b1e4a88418641',
-//     req.user.email: 'russ@gmail.com',
+//     req.auth._id: '5d8924b1e77b1e4a88418641',
+//     req.auth.email: 'russ@gmail.com',
 
 // 1. DEPENDENCIES
 const router = require('express').Router({ caseSensitive: false, strict: false });

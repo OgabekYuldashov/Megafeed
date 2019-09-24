@@ -33,5 +33,5 @@ import {EditProfileComponent} from '../me/editProfile.component';
     FormsModule
   ]
 })
-export class UserModule {
+export class AuthModule {
 }

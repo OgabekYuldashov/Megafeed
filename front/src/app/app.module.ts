@@ -11,7 +11,7 @@ import {CommonService} from './services/common.service';
 import {en_US, NZ_I18N, NzIconModule} from 'ng-zorro-antd';
 import {JwtModule} from '@auth0/angular-jwt';
 import {conf} from './config';
-import {UserModule} from './modules/user/user.module';
+import {AuthModule} from './modules/auth/auth.module';
 import { IsVisibleDirective } from './directives/is-visible.directive';
 
 registerLocaleData(en);
@@ -42,7 +42,7 @@ export function tokenGetter() {
       }
     }),
     NzIconModule,
-    UserModule
+    AuthModule
   ],
   providers: [{provide: NZ_I18N, useValue: en_US},
     CommonService],

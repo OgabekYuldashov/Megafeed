@@ -18,7 +18,7 @@
           <a class="nav-link" [routerLink]="['', category.alias]">{{category.title}}</a>
         </li>
         <li class="nav-item" *ngIf="!auth.loggedIn">
-          <a class="nav-link" [routerLink]="['user', 'signin']">Sign in</a>
+          <a class="nav-link" [routerLink]="['auth', 'signin']">Sign in</a>
         </li>
         <li class="nav-item" *ngIf="auth.loggedIn" style="display: flex; justify-content: center; flex-direction: column; text-align: center; font-size: 20px;">
           <a (click)="onToggleProfileMenu()" class="nav-link" nz-icon nzType="user" nzTheme="outline" style="color: #00000080;"></a>

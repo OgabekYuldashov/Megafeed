@@ -33,12 +33,12 @@ router.post('/signup', (req, res, next) => {
             }
             jsonBody.password = await hash(jsonBody.password + SECRET_KEY, saltRounds);
 
-            // create a new user
+            // create a new auth
             let newUser = User({
                 email: jsonBody.email,
                 password: jsonBody.password
             });
-            // save the user
+            // save the auth
             let user = await newUser.save();
 
             const token = generateToken(user);

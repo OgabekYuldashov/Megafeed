@@ -72,7 +72,7 @@ feature.formdata = window.FormData !== undefined;
 var hasProp = !!$.fn.prop;
 
 // attr2 uses prop when it can but checks the return type for
-// an expected string.  this accounts for the case where a form 
+// an expected string.  this accounts for the case where a form
 // contains inputs with names like "action" or "method"; in those
 // cases "prop" returns the element
 $.fn.attr2 = function() {
@@ -236,7 +236,7 @@ $.fn.ajaxSubmit = function(options) {
 
     var jqxhr;
 
-    // options.iframe allows user to force iframe mode
+    // options.iframe allows auth to force iframe mode
     // 06-NOV-09: now defaulting to iframe mode if file input is detected
     if (options.iframe !== false && (options.iframe || shouldUseFrame)) {
         // hack to fix Safari hang (thanks to Tim Molendijk for this)
@@ -332,7 +332,7 @@ $.fn.ajaxSubmit = function(options) {
         s.data = null;
         var beforeSend = s.beforeSend;
         s.beforeSend = function(xhr, o) {
-            //Send FormData() provided by user
+            //Send FormData() provided by auth
             if (options.formData) {
                 o.data = options.formData;
             }
@@ -461,7 +461,7 @@ $.fn.ajaxSubmit = function(options) {
 
         var CLIENT_TIMEOUT_ABORT = 1;
         var SERVER_ABORT = 2;
-                
+
         function getDoc(frame) {
             /* it looks like contentWindow or contentDocument do not
              * carry the protocol property in ie8, when running under ssl
@@ -469,9 +469,9 @@ $.fn.ajaxSubmit = function(options) {
              * the protocol is know but not on the other two objects. strange?
              * "Same origin policy" http://en.wikipedia.org/wiki/Same_origin_policy
              */
-            
+
             var doc = null;
-            
+
             // IE8 cascading access check
             try {
                 if (frame.contentWindow) {
@@ -507,8 +507,8 @@ $.fn.ajaxSubmit = function(options) {
         // take a breath so that pending repaints get some cpu time before the upload starts
         function doSubmit() {
             // make sure form attrs are set
-            var t = $form.attr2('target'), 
-                a = $form.attr2('action'), 
+            var t = $form.attr2('target'),
+                a = $form.attr2('action'),
                 mp = 'multipart/form-data',
                 et = $form.attr('enctype') || $form.attr('encoding') || mp;
 
@@ -619,7 +619,7 @@ $.fn.ajaxSubmit = function(options) {
             if (xhr.aborted || callbackProcessed) {
                 return;
             }
-            
+
             doc = getDoc(io);
             if(!doc) {
                 log('cannot access response document');
@@ -690,7 +690,7 @@ $.fn.ajaxSubmit = function(options) {
                 var dt = (s.dataType || '').toLowerCase();
                 var scr = /(json|script|text)/.test(dt);
                 if (scr || s.textarea) {
-                    // see if user embedded response in textarea
+                    // see if auth embedded response in textarea
                     var ta = doc.getElementsByTagName('textarea')[0];
                     if (ta) {
                         xhr.responseText = ta.value;
