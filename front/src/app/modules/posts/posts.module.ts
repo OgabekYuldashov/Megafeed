@@ -13,6 +13,7 @@ import { NzIconModule, NzMessageService, NzMessageModule } from 'ng-zorro-antd';
 import { SinglePostViewComponent } from './single-post-view.component';
 import {ShowPostComponent} from './show-post.component';
 import {ProtectedPageGuard} from '../../guards/protectedPage.guard';
+import { PostAutorInfoComponent } from './post-autor-info.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {ProtectedPageGuard} from '../../guards/protectedPage.guard';
     ShowPostComponent,
     UploadComponent,
     SinglePostViewComponent,
+    PostAutorInfoComponent,
   ],
   imports: [
     EditorModule,

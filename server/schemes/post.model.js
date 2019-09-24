@@ -10,8 +10,10 @@ const postModel = new Schema({
     imageUrl: { type: String, required: false },
     keywords: { type: String, required: false },
     author: {
+        _id: {type: String, required: true},
+        name: { type: String, required: false },
         imageUrl: { type: String, required: false},
-        name: { type: String, required: false}
+        bio: { type: String, default: 'Please, update your info' },
     },
 }, { collection : 'post' });
 

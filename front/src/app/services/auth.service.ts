@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {conf} from '../config';
 import {JwtHelperService} from '@auth0/angular-jwt';
+import { AuthorizedUserModel } from '../models/authorizedUser.model';
 
 const helper = new JwtHelperService();
 
@@ -46,7 +47,7 @@ export class AuthService {
     return (localStorage.getItem('access_token') !== null && localStorage.getItem('access_token') !== undefined && localStorage.getItem('access_token') !== '');
   }
 
-  getActiveUser() {
+  getActiveUser(): AuthorizedUserModel {
     if (!localStorage.getItem('access_token')) {
       return null;
     }

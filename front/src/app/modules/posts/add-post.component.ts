@@ -3,6 +3,8 @@ import { AddPostService } from '../../services/add-post.service';
 import { PostModel } from '../../models/post.model';
 import { Router } from '@angular/router';
 import { CommonService } from '../../services/common.service';
+import { AuthorInfoModel, getAuthorInfoModel } from 'src/app/models/authorInfo.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -13,11 +15,19 @@ import { CommonService } from '../../services/common.service';
 })
 export class AddPostComponent implements OnInit {
 
+  public authorInfo: AuthorInfoModel;
+
   // @ts-ignore
   @ViewChild('avatarUrl') avatarUrl: string;
   public post: PostModel;
 
-  constructor(private addPostService: AddPostService, private router: Router, private commonService: CommonService) {
+  constructor(private addPostService: AddPostService, private router: Router, private commonService: CommonService, private auth: AuthService) {
+    const user = auth.getActiveUser();
+    this.authorInfo = getAuthorInfoModel(auth.getActiveUser(), new Date(Date.now()));
+
+    console.log(user);
+    console.log(this.authorInfo);
+
     this.post = new PostModel();
     this.post.imageUrl = this.avatarUrl;
   }
