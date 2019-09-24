@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BookmarksService } from 'src/app/services/bookmarks.service';
 import { bookmarksStore } from 'src/app/store';
 import { BookmarkModel } from 'src/app/models/bookmark.model';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-bookmarks',
@@ -12,8 +13,11 @@ export class BookmarksComponent implements OnInit {
   public bookmarks: BookmarkModel[];
   private unsubscribe;
 
-  constructor(private bookmarksService: BookmarksService) {
+  constructor(private bookmarksService: BookmarksService, private notification: NzNotificationService) {
     this.bookmarksService.getBookmarksList();
+    this.notification.config({
+      nzPlacement: 'bottomRight'
+    });
   }
 
   ngOnInit() {
@@ -29,6 +33,7 @@ export class BookmarksComponent implements OnInit {
 
   removeBookmark(id: string) {
     this.bookmarksService.removeBookmark(id);
+    this.notification.blank('Bookmark removed', 'Bookmark removed sucsessfully!');
     return false;
   }
 }

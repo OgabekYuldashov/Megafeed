@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BookmarkModel } from '../models/bookmark.model';
 import { bookmarksStore } from '../store';
-import { loadBookmarks, addBookmark } from '../actions/bookmarks.actions';
+import { loadBookmarks, addBookmark, removeBookmark } from '../actions/bookmarks.actions';
 
 @Injectable({
     providedIn: 'root'
@@ -27,18 +27,15 @@ export class BookmarksService {
                 shortDescription: postShortDescription
             }
         };
-
-        console.log(newBookmark);
                 
+        bookmarksStore.dispatch(addBookmark(newBookmark));
         this.http.post("http://localhost:9090/api/v1/bookmarks", newBookmark).subscribe((data: BookmarkModel) => {
-            bookmarksStore.dispatch(addBookmark(data));
         });
     }
 
     removeBookmark(bookmarkId: string) {
-        let params = new HttpParams().set("_id", bookmarkId);
-        this.http.delete("http://localhost:9090/api/v1/bookmarks", { params: params }).subscribe(() => {
-            this.getBookmarksList();
+        bookmarksStore.dispatch(removeBookmark(bookmarkId));
+        this.http.delete("http://localhost:9090/api/v1/bookmarks/" + bookmarkId).subscribe(() => {
         });
     }
 }

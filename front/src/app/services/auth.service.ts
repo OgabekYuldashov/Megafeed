@@ -42,6 +42,7 @@ export class AuthService {
   }
 
   public get loggedIn(): boolean {
+    // tslint:disable-next-line:max-line-length
     return (localStorage.getItem('access_token') !== null && localStorage.getItem('access_token') !== undefined && localStorage.getItem('access_token') !== '');
   }
 
@@ -49,9 +50,9 @@ export class AuthService {
     if (!localStorage.getItem('access_token')) {
       return null;
     }
-    try{
+    try {
       return helper.decodeToken(localStorage.getItem('access_token'));
-    }catch(e){
+    } catch (e) {
       localStorage.removeItem('access_token');
       return null;
     }

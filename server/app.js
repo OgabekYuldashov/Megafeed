@@ -22,6 +22,7 @@ app.set('env', 'development');
 app.disable('x-powered-by');
 app.set('trust proxy', true);
 app.use((req, res, next) => {
+    mongoose.set('useCreateIndex', true);
     mongoose.connect(config.dburl, { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
         if (err) throw err;
         next();

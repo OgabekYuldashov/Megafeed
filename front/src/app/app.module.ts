@@ -23,7 +23,8 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     LayoutComponent,
-    IsVisibleDirective
+    IsVisibleDirective,
+
   ],
   imports: [
     BrowserModule,

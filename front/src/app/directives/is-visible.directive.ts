@@ -1,7 +1,8 @@
 import {Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
 
 @Directive({
-  selector: '[appIsVisible]'
+  // tslint:disable-next-line:directive-selector
+  selector: '[isVisible]'
 })
 export class IsVisibleDirective implements OnChanges {
 
