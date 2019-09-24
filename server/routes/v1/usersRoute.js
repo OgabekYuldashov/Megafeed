@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router({caseSensitive: false, strict: false});
 const bcrypt = require('bcrypt');
 const util = require('util');
+const mongoose = require('mongoose');
 const hash = util.promisify(bcrypt.hash);
 
 const User = require('./../../schemes/user.schema');
@@ -104,6 +105,40 @@ router.post('/validate_email', async (req, res) => {
     }
 });
 /************************ END PUBLIC ENDPOINTS *************************/
+
+
+/************************ START PROTECTED ENDPOINTS *************************/
+router.post('/follow', async (req, res) => {
+    try {
+        const jsonBody = req.body;
+
+        if (!('uid' in jsonBody)) {
+            return res
+                .status(400)
+                .json({error: true, message: 'Invalid JSON Body', data: {}})
+        }
+        const userToFollow = await User.find({_id: jsonBody.uid});
+
+        if(!userToFollow){
+            return res
+                .status(400)
+                .json({error: true, message: 'Invalid Arguments', data: {}})
+        }
+
+        testId = userToFollow._id + '';
+        const output = await User.update({_id: req.user._id}, {'$addToSet': {'following': jsonBody.uid}});
+
+        res.status(200).json({error: false, message: 'Following', data: {}});
+
+    } catch (e) {
+        console.log('EXCEPTION follow...');
+        console.log(e);
+        res
+            .status(501)
+            .json({error: true, message: 'Internal Error', data: {}});
+    }
+});
+/************************ END PROTECTED ENDPOINTS *************************/
 
 
 

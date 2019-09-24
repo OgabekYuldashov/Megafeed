@@ -39,7 +39,8 @@ export class SignupComponent implements OnInit {
         // tslint:disable-next-line:max-line-length
         Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')]
         , this.asyncEmailValidator.bind(this)],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      cbxAgreement: [true, [Validators.requiredTrue]]
     });
   }
 
@@ -51,9 +52,9 @@ export class SignupComponent implements OnInit {
           if (resp.error) {
             this.errorMsg = resp.message;
           } else {
-            console.log('User created');
+            // console.log('User created');
+            // localStorage.setItem('access_token', resp.data.token);
             this.errorMsg = null;
-            localStorage.setItem('access_key', resp.data.token);
             this.router.navigate(['user', 'signin']);
           }
         },
