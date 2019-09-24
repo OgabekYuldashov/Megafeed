@@ -44,7 +44,6 @@ export class EditProfileComponent implements OnInit {
       bio: this.bio,
       imgUrl: this.imgUrl
     }).subscribe((response: any) => {
-      console.log(response);
       localStorage.setItem('access_token', response.data.token);
       this.router.navigate(['/']);
     });

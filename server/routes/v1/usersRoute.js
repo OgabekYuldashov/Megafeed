@@ -127,8 +127,7 @@ router.post('/follow', async (req, res) => {
                 .json({error: true, message: 'Invalid Arguments', data: {}})
         }
 
-        testId = userToFollow._id + '';
-        const output = await User.update({_id: req.user._id}, {'$addToSet': {'following': jsonBody.uid}});
+        await User.update({_id: req.user._id}, {'$addToSet': {'following': jsonBody.uid}});
 
         res.status(200).json({error: false, message: 'Following', data: {}});
 
@@ -158,7 +157,7 @@ router.post('/unfollow', async (req, res) => {
                 .json({error: true, message: 'Invalid Arguments', data: {}})
         }
 
-        const output = await User.update({_id: req.user._id}, {'$addToSet': {'following': jsonBody.uid}});
+        await User.update({_id: req.user._id}, {$pullAll: {following: [jsonBody.uid]}});
 
         res.status(200).json({error: false, message: 'Following', data: {}});
 
@@ -180,9 +179,13 @@ router.patch('/profile', (req, res, next) => {
         try {
             const jsonBody = req.body;
 
-            const output = await User.findOneAndUpdate({_id: req.user._id}, {name: jsonBody.name, bio: jsonBody.bio, imgUrl: jsonBody.imgUrl});
+            const updatedUser = await User.findOneAndUpdate({_id: req.user._id}, {
+                name: jsonBody.name,
+                bio: jsonBody.bio,
+                imgUrl: jsonBody.imgUrl
+            }, {new: true});
 
-            const token = generateToken(req.user);
+            const token = generateToken(updatedUser);
             res.status(200).json({error: false, message: 'User info updated', data: {token: token}});
 
         } catch (e) {
@@ -226,8 +229,15 @@ async function userExists(email) {
     }
 }
 
-function generateToken(user){
-    return jwt.sign({'_id': user._id, 'email': user.email, 'name': user.name, 'bio': user.bio, 'following': user.following, 'imgUrl': user.imgUrl}, SECRET_KEY, {expiresIn: '24h'});
+function generateToken(user) {
+    return jwt.sign({
+        '_id': user._id,
+        'email': user.email,
+        'name': user.name,
+        'bio': user.bio,
+        'following': user.following,
+        'imgUrl': user.imgUrl
+    }, SECRET_KEY, {expiresIn: '24h'});
 }
 
 module.exports = router;
