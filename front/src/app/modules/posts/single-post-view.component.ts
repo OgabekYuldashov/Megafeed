@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { SinglePostViewService} from '../../services/single-post-view.service';
 import {CommonService} from '../../services/common.service';
 import {PostModel} from '../../models/post.model';
-import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-single-post-view',
