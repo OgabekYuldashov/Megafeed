@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {HttpClient} from '@angular/common/http';
 import {conf} from '../../config';
-import {Route, Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-edit-profile',
@@ -15,8 +15,9 @@ import {Route, Router} from '@angular/router';
   `]
 })
 export class EditProfileComponent implements OnInit {
-  public name: string;
-  public bio: string;
+  public name = '';
+  public bio = '';
+  public imgUrl = '';
 
   constructor(private auth: AuthService, private http: HttpClient, private router: Router) {
 
@@ -24,20 +25,24 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit(): void {
     const user = this.auth.getActiveUser();
-    // user.name = 'This is a name';
-    // user.bio = 'This is a bio';
+
+    // prepopulating the inputs with the existing data
     if (user.name) {
       this.name = user.name;
     }
     if (user.bio) {
       this.bio = user.bio;
     }
+    if (user.imgUrl) {
+      this.imgUrl = user.imgUrl;
+    }
   }
 
   saveChanges() {
     this.http.patch(conf.BASE_URL + '/api/v1/users/profile', {
       name: this.name,
-      bio: this.bio
+      bio: this.bio,
+      imgUrl: this.imgUrl
     }).subscribe((response: any) => {
       console.log(response);
       localStorage.setItem('access_token', response.data.token);

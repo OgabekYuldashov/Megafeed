@@ -18,10 +18,10 @@ import {Router} from '@angular/router';
           <p>
               <a class="nav-link" [routerLink]="['me', 'bookmarks']">My bookmarks</a>
           </p>
+          <hr>
           <p>
               <a class="nav-link" [routerLink]="['me', 'profile']">My Profile</a>
           </p>
-          <hr>
           <p><a (click)="onLogout()" class="nav-link" href="#">Logout</a></p>
       </nz-card>
   `,
