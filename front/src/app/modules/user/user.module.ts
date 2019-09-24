@@ -3,10 +3,11 @@ import {CommonModule} from '@angular/common';
 import {SigninComponent} from './signin.component';
 import {RouterModule} from '@angular/router';
 import {NgZorroAntdModule, NzFormModule} from 'ng-zorro-antd';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {SignupComponent} from './signup.component';
 import {ProfileComponent} from './profile.component';
+import {EditProfileComponent} from '../me/editProfile.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {ProfileComponent} from './profile.component';
     RouterModule.forChild([
       {path: 'signin', component: SigninComponent},
       {path: 'signup', component: SignupComponent},
-    ])
+    ]),
+    FormsModule
   ]
 })
 export class UserModule {

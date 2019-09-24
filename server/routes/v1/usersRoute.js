@@ -39,9 +39,10 @@ router.post('/signup', (req, res, next) => {
                 password: jsonBody.password
             });
             // save the user
-            let result = await newUser.save();
+            let user = await newUser.save();
 
-            const token = jwt.sign({'_id': result._id, 'email': result.email}, SECRET_KEY, {expiresIn: '24h'});
+            const token = generateToken(user);
+
             res
                 .status(201)
                 .json({error: false, message: 'Record Created', data: {token: token}});
@@ -73,7 +74,8 @@ router.post('/signin', (req, res, next) => {
                 return res.status(401).json({error: true, message: 'Invalid Credentials', data: {}});
             }
 
-            const token = jwt.sign({'_id': user._id, 'email': user.email}, SECRET_KEY, {expiresIn: '24h'});
+            const token = generateToken(user);
+
             res.status(200).json({error: false, message: 'Authenticated', data: {token: token}});
 
         } catch (e) {
@@ -119,7 +121,7 @@ router.post('/follow', async (req, res) => {
         }
         const userToFollow = await User.find({_id: jsonBody.uid});
 
-        if(!userToFollow){
+        if (!userToFollow) {
             return res
                 .status(400)
                 .json({error: true, message: 'Invalid Arguments', data: {}})
@@ -138,6 +140,30 @@ router.post('/follow', async (req, res) => {
             .json({error: true, message: 'Internal Error', data: {}});
     }
 });
+
+router.patch('/profile', (req, res, next) => {
+        req.reqKeys = ['name', 'bio'];
+        next();
+    },
+    validateFields,
+    async (req, res) => {
+        try {
+            const jsonBody = req.body;
+
+            const output = await User.findOneAndUpdate({_id: req.user._id}, {name: jsonBody.name, bio: jsonBody.bio});
+
+            const token = generateToken(req.user);
+            res.status(200).json({error: false, message: 'User info updated', data: {token: token}});
+
+        } catch (e) {
+            console.log('EXCEPTION follow...');
+            console.log(e);
+            res
+                .status(501)
+                .json({error: true, message: 'Internal Error', data: {}});
+        }
+    });
+
 /************************ END PROTECTED ENDPOINTS *************************/
 
 
@@ -161,13 +187,17 @@ function validateFields(req, res, next) {
 }
 
 async function userExists(email) {
-    try{
+    try {
         let output = await User.find({email: email});
         // console.log(output);
         return output.length !== 0;
-    }catch (e) {
+    } catch (e) {
         throw e;
     }
+}
+
+function generateToken(user){
+    return jwt.sign({'_id': user._id, 'email': user.email, 'name': user.name, 'bio': user.bio}, SECRET_KEY, {expiresIn: '24h'});
 }
 
 module.exports = router;

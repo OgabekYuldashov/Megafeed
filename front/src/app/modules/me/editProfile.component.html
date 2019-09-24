@@ -1,0 +1,15 @@
+<div class="container" style=" height: 100%;">
+  <div class="row h-100">
+    <div class="col-12">
+      <div class="d-flex">
+        <div class="w-100" style="font-size: 1.25rem; font-weight: 300;">
+          <input nz-input placeholder="Enter Your Name" [(ngModel)]="name" class="enlarged-txt" style="text-align: center; font-weight: bolder"/>
+          <br><br>
+          <textarea class="enlarged-txt" rows="5" placeholder="Enter a short BIO that tells your readers about you (200 words max)" maxlength="200" nz-input [(ngModel)]="bio"></textarea>
+          <br><br>
+          <button class="enlarged-txt float-right" nz-button (click)="saveChanges()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
