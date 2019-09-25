@@ -38,12 +38,14 @@ export class ProfilePageComponent {
       if (resp.error) {
         console.log('Error Fetching Data');
       } else {
-        this.user._id = resp.data.user._id;
-        this.user.email = resp.data.user.email;
-        this.user.name = resp.data.user.name;
-        this.user.imgUrl = resp.data.user.imgUrl;
-        this.user.bio = resp.data.user.bio;
-        this.user.following = resp.data.user.following;
+        const userModel = newAuthorizedUserModel();
+        userModel._id = resp.data.user._id;
+        userModel.email = resp.data.user.email;
+        userModel.name = resp.data.user.name;
+        userModel.imgUrl = resp.data.user.imgUrl;
+        userModel.bio = resp.data.user.bio;
+        userModel.following = resp.data.user.following;
+        this.user = userModel;
 
         const rawPosts = resp.data.posts;
 

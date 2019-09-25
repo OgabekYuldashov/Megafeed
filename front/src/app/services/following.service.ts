@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {conf} from '../config';
-import {AuthService} from "./auth.service";
+import {AuthService} from './auth.service';
 
 @Injectable({providedIn: 'root'})
 export class FollowingService {
@@ -32,6 +32,8 @@ export class FollowingService {
 
   isFollowing(uid: string) {
     const activeUser = this.auth.getActiveUser();
+    console.log(uid);
+    console.log(activeUser);
     return activeUser.following.includes(uid);
   }
 }
