@@ -1,5 +1,4 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {NzNotificationService} from 'ng-zorro-antd';
 import {FollowingService} from '../../services/following.service';
 
 @Component({
@@ -24,11 +23,7 @@ export class AuthorInfoComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-
-    console.log('Author info: ');
-    console.log(this.user);
     this.updateFollowButtonName(this.followingService.isFollowing(this.user._id));
-    console.log(this.followingService.isFollowing(this.user._id));
   }
 
 
@@ -41,9 +36,6 @@ export class AuthorInfoComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-
-    console.log('Author info ngOnChanges: ');
-    console.log(JSON.stringify(this.user));
     this.updateFollowButtonName(this.followingService.isFollowing(this.user._id));
   }
 }
