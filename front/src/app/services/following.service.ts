@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {conf} from '../config';
+import {AuthService} from "./auth.service";
 
 @Injectable({providedIn: 'root'})
 export class FollowingService {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private auth: AuthService) {
   }
 
   follow(uid: string) {
@@ -12,6 +13,7 @@ export class FollowingService {
       if (response.error) {
         return false;
       } else {
+        localStorage.setItem('access_token', response.data.token);
         return true;
       }
     });
@@ -22,8 +24,14 @@ export class FollowingService {
       if (response.error) {
         return false;
       } else {
+        localStorage.setItem('access_token', response.data.token);
         return true;
       }
     });
+  }
+
+  isFollowing(uid: string) {
+    const activeUser = this.auth.getActiveUser();
+    return activeUser.following.includes(uid);
   }
 }

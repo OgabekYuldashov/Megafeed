@@ -11,7 +11,8 @@
 						<h1>{{user.name}}</h1>
 						<span class="author-description">{{user.bio}}</span>
 						<div class="sociallinks"><a  target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a> <span class="dot"></span> <a target="_blank" href="https://plus.google.com/"><i class="fa fa-google-plus"></i></a></div>
-						<a target="_blank" href="https://twitter.com/" class="btn follow">Follow</a>
+<!--						<button type="button" (click)="followUnfollow()" >{{followBtnName}}</button>-->
+						<button type="button" (click)="followUnfollow()" class="btn follow">{{followBtnName}}</button>
 					</div>
 					<div class="col-md-2 col-xs-12">
 						<img class="author-thumb" src="{{user.imgUrl}}" alt="{{user.name}}">

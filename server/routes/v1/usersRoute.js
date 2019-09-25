@@ -142,12 +142,20 @@ router.get('/:uid', async (req, res) => {
 router.post('/follow', async (req, res) => {
     try {
         const jsonBody = req.body;
-
+        console.log('RECEIVED: ');
+        console.log(jsonBody);
         if (!('uid' in jsonBody)) {
             return res
                 .status(400)
-                .json({error: true, message: 'Invalid JSON Body', data: {}})
+                .json({error: true, message: 'Invalid JSON Body', data: jsonBody})
         }
+        // check if a valid ObjectId has been passed
+        if (!jsonBody.uid.match(/^[0-9a-fA-F]{24}$/)) {
+            return res
+                .status(400)
+                .json({error: true, message: 'Invalid uid', data: jsonBody});
+        }
+
         const userToFollow = await User.find({_id: jsonBody.uid});
 
         if (!userToFollow) {
@@ -156,9 +164,12 @@ router.post('/follow', async (req, res) => {
                 .json({error: true, message: 'Invalid Arguments', data: {}})
         }
 
-        await User.update({_id: req.user._id}, {'$addToSet': {'following': jsonBody.uid}});
+        const updatedUser = await User.findOneAndUpdate({_id: req.user._id}, {'$addToSet': {'following': jsonBody.uid}}, {new: true});
+        console.log('FOLLOW: ')
+        console.log(updatedUser);
 
-        res.status(200).json({error: false, message: 'Following', data: {}});
+        const token = generateToken(updatedUser);
+        res.status(200).json({error: false, message: 'Following', data: {token}});
 
     } catch (e) {
         console.log('EXCEPTION follow...');
@@ -178,6 +189,14 @@ router.post('/unfollow', async (req, res) => {
                 .status(400)
                 .json({error: true, message: 'Invalid JSON Body', data: {}})
         }
+
+        // check if a valid ObjectId has been passed
+        if (!jsonBody.uid.match(/^[0-9a-fA-F]{24}$/)) {
+            return res
+                .status(400)
+                .json({error: true, message: 'Invalid uid', data: jsonBody});
+        }
+
         const userToUnfollow = await User.find({_id: jsonBody.uid});
 
         if (!userToUnfollow) {
@@ -186,9 +205,12 @@ router.post('/unfollow', async (req, res) => {
                 .json({error: true, message: 'Invalid Arguments', data: {}})
         }
 
-        await User.update({_id: req.user._id}, {$pullAll: {following: [jsonBody.uid]}});
+        const updatedUser = await User.findOneAndUpdate({_id: req.user._id}, {$pullAll: {following: [jsonBody.uid]}}, {new: true});
+        console.log('UNFOLLOW: ');
+        console.log(updatedUser);
 
-        res.status(200).json({error: false, message: 'Following', data: {}});
+        const token = generateToken(updatedUser);
+        res.status(200).json({error: false, message: 'Following', data: {token}});
 
     } catch (e) {
         console.log('EXCEPTION follow...');

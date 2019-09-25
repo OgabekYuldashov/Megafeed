@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {BookmarksService} from '../../services/bookmarks.service';
 import {NzNotificationService} from 'ng-zorro-antd';
 import {PostPreviewModel} from '../../models/postPreview.model';
+import {FollowingService} from "../../services/following.service";
 
 @Component({
   selector: 'app-author-post',
