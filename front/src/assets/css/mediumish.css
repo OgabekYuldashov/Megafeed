@@ -222,6 +222,10 @@ span.post-name a,span.post-read-more a:hover {
 	line-height:1.8;
 	color:rgba(0,0,0,.8);
 }
+  .article-post img {
+    max-width: 100%;
+  }
+
 blockquote {
 	border-left:4px solid #00ab6b;
 	padding:0 20px;
@@ -440,4 +444,12 @@ ul.tags li a:hover {
 	line-height:22px;
 	border-radius:50%;
 	font-size:12px;
+}
+
+
+.text3Line {
+	overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
