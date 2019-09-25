@@ -61,6 +61,7 @@ router.patch('/', async (req, res) => {
 
 // remove
 router.delete('/:_id', async (req, res) => {
+    console.log('delete publications ' + req.user._id + ' ' + req.params._id);
     await Post.remove({ "author._id": req.user._id, _id: req.params._id });
     res.status(200).end();
 });

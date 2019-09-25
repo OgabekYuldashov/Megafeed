@@ -1,9 +1,9 @@
 <div class="card">
-    <a [routerLink]="['posts', post._id]">
+    <a [routerLink]="['/', 'posts', 'view', post._id]">
         <img class="img-fluid" src="{{post.imageUrl}}" alt="">
     </a>
     <div class="card-block">
-        <h2 class="card-title"><a [routerLink]="['posts', post._id]">{{post.title}}</a></h2>
+        <h2 class="card-title"><a [routerLink]="['/', 'posts', 'view', post._id]">{{post.title}}</a></h2>
         <h4 class="card-text">{{post.shortDescription}}</h4>
         <div class="metafooter">
             <div class="wrapfooter">

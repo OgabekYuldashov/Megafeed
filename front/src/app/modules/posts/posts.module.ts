@@ -9,7 +9,6 @@ import { UploadComponent } from './upload.component';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzIconModule, NzMessageService, NzMessageModule } from 'ng-zorro-antd';
 import { SinglePostViewComponent } from './single-post-view.component';
-import {ShowPostComponent} from './show-post.component';
 import { PostAutorInfoComponent } from './post-autor-info.component';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { PostAutorInfoComponent } from './post-autor-info.component';
     PostsfeedComponent,
     ListPostComponent,
     ListPostFeaturedComponent,
-    ShowPostComponent,
     UploadComponent,
     SinglePostViewComponent,
     PostAutorInfoComponent
@@ -32,13 +30,15 @@ import { PostAutorInfoComponent } from './post-autor-info.component';
       { path: 'posts', component: PostsfeedComponent },
       { path: 'posts/:category', component: PostsfeedComponent },
       { path: 'posts/view/:_id', component: SinglePostViewComponent },
+      { path: '', component: PostsfeedComponent },
     ])
   ],
   providers: [
     NzMessageService
   ],
   exports: [
-    PostAutorInfoComponent
+    PostAutorInfoComponent,
+    ListPostComponent
   ]
 })
-export class PostsModule { }
+export class PostsModule2 { }

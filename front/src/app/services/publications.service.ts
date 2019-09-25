@@ -27,9 +27,10 @@ export class PublicationsService {
         return this.http.patch<PostModel>("http://localhost:9090/api/v1/publications", post);
     }
 
-    removePublication(postId: string): Observable<Object> {
-                publicationsStore.dispatch(removePublication(postId));
-        return this.http.delete<Object>("http://localhost:9090/api/v1/publications/" + postId);
+    removePublication(postId: string) {
+        publicationsStore.dispatch(removePublication(postId));
+        console.log(postId);
+        return this.http.delete("http://localhost:9090/api/v1/publications/" + postId);
     }
 
 }

@@ -1,10 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostPreviewModel } from 'src/app/models/postPreview.model';
 import { postsStore } from './../../store';
-import { loadPostsPreviews } from './../../actions/postPreview';
 import { PostsService } from 'src/app/services/posts.service';
-import { BookmarksService } from 'src/app/services/bookmarks.service';
 
 
 @Component({
@@ -37,7 +35,7 @@ export class PostsfeedComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.unsubscribe();
   }
 }

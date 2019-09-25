@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SinglePostViewService} from '../../services/single-post-view.service';
 import {PostModel} from '../../models/post.model';
+import { PostsService } from 'src/app/services/posts.service';
+import { AuthorInfoModel } from 'src/app/models/authorInfo.model';
 
 @Component({
   selector: 'app-single-post-view',
   templateUrl: './single-post-view.component.html',
   styles: [],
-  providers: [ SinglePostViewService ]
 })
 export class SinglePostViewComponent implements OnInit {
   public postId;
-  public posts;
-  constructor(private route: ActivatedRoute, private singlePostViewService: SinglePostViewService) {
+  public post: PostModel;
+  public authorInfo: AuthorInfoModel;
+
+  constructor(private route: ActivatedRoute, private postsService: PostsService) {
     this.postId = this.route.snapshot.params._id;
   }
 
@@ -25,9 +27,16 @@ export class SinglePostViewComponent implements OnInit {
   }
 
   getPostbyId(postId) {
-    this.singlePostViewService.getPostbyId(postId).subscribe(result => {
+    this.postsService.getPostbyId(postId).subscribe(result => {
       console.log('result is ', result);
-      this.posts = result;
+      this.post = result;
+      this.authorInfo = {
+        _id: this.post.author._id,
+        name: this.post.author.name,
+        imageUrl: this.post.author.imageUrl,
+        bio: this.post.author.bio,
+        pudlishDate: this.post.postDate
+      }
     });
   }
 

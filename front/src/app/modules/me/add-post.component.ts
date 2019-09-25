@@ -1,17 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { AddPostService } from '../../services/add-post.service';
+import { Component } from '@angular/core';
 import { PostModel, newPostModel } from '../../models/post.model';
 import { Router } from '@angular/router';
 import { AuthorInfoModel, getAuthorInfoModel } from 'src/app/models/authorInfo.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { PublicationsService } from 'src/app/services/publications.service';
-import { PostAutorInfoComponent } from './../posts/post-autor-info.component';
 
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
   styleUrls: ['./add-post.component.css'],
-  providers: [AddPostService]
 })
 export class AddEditPostComponent {
 
@@ -23,15 +20,15 @@ export class AddEditPostComponent {
     this.authorInfo = getAuthorInfoModel(auth.getActiveUser(), new Date(Date.now()));
     this.post.postDate = new Date(Date.now());
   }
-  
+
   addOrEditPost() {
     if (this.post._id) {
       this.publicationsService.editPublication(this.post).subscribe((data: PostModel) => {
-        this.router.navigate(['/', 'posts', data._id]);
+        this.router.navigate(['/', 'posts', 'view', data._id]);
       });
     } else {
       this.publicationsService.addPublication(this.post).subscribe((data: PostModel) => {
-        this.router.navigate(['/', 'posts', data._id]);
+        this.router.navigate(['/', 'posts', 'view', data._id]);
       });
     }
   }
