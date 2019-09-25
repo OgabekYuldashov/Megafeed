@@ -20,9 +20,9 @@ export class SinglePostComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.post);
-    console.log('USER:');
-    console.log(this.user);
-    this.post.imgUrl = 'https://i.stack.imgur.com/Oq4FZ.png';
+    // console.log('USER:');
+    // console.log(this.user);
+    // this.post.imgUrl = 'https://i.stack.imgur.com/Oq4FZ.png';
   }
 
   addNewBookmark(post: PostPreviewModel) {

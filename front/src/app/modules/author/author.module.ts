@@ -18,7 +18,6 @@ import {CommonModule} from '@angular/common';
 export class AuthorModule {
 
   constructor() {
-    console.log('Author Module Constructor...');
 
   }
 }

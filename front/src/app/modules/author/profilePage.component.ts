@@ -27,7 +27,7 @@ export class ProfilePageComponent {
   public posts: PostModel[];
 
   constructor(private root: ActivatedRoute, private http: HttpClient) {
-    console.log('Fetching Posts...');
+    // console.log('Fetching Posts...');
     this.fetchPosts();
 
   }
@@ -46,8 +46,6 @@ export class ProfilePageComponent {
         this.user.following = resp.data.user.following;
 
         const rawPosts = resp.data.posts;
-        console.log('RAW POSTS: ');
-        console.log(rawPosts);
 
         this.posts = rawPosts.map(post => {
           return {
@@ -64,9 +62,9 @@ export class ProfilePageComponent {
 
         });
 
-        setTimeout(() => {
-          console.log(this.posts);
-        }, 2000);
+        /*setTimeout(() => {
+          // console.log(this.posts);
+        }, 2000);*/
       }
     });
   }
