@@ -7,7 +7,13 @@ const mongoose = require('mongoose');
 
 // Get all post
 router.get('/', async (req, res) =>  {
-    posts = await Post.find({}, '-description', { sort: { _id: -1 } });
+    console.log(req.query.category);
+    let posts = [];
+    if (req.query.category){
+        posts = await Post.find({ category: req.query.category }, '-description', { sort: { _id: -1 } });
+    } else{
+        posts = await Post.find({ }, '-description', { sort: { _id: -1 } });
+    }
     return res.status(200).json(posts);
 })
 

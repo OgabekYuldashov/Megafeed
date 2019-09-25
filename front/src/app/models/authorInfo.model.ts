@@ -19,3 +19,16 @@ export function getAuthorInfoModel(user: AuthorizedUserModel, pudlishDate: Date)
 
     return authorInfo;
 }
+
+
+export function newAuthorInfoModel() {
+    const authorInfo: AuthorInfoModel = {
+        _id: '',
+        name: '',
+        bio: '',
+        imageUrl: '',
+        pudlishDate: new Date(Date.now())
+    };
+
+    return authorInfo;
+}

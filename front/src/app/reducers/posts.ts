@@ -12,8 +12,11 @@ const initialState: PostsState = {
     categories: [
         {alias: '', title: 'Stories', description: 'All the best stories from MUM'},
         {alias: 'tech', title: 'TECH', description: 'Technology and fun facts'},
-      {alias: 'art', title: 'ART', description: 'The most interesting in arts'},
-      {alias: 'cars', title: 'CARS', description: 'Thetrtyrthts'},
+      {alias: 'design', title: 'DESIGN', description: 'The most interesting in design'},
+      {alias: 'marketing', title: 'MARKETING', description: 'All around marketing'},
+      {alias: 'cars', title: 'CARS', description: 'Cars, bikes and dirt'},
+      {alias: 'argiro', title: 'ARGIRO', description: 'Do you like tofu?'},
+      {alias: 'president2019', title: 'PRESIDENT2019', description: 'MUM politic arena'},
     ]
 };
 

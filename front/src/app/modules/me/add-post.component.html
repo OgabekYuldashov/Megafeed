@@ -8,6 +8,13 @@
           </div>
 
           <div class="posttitle mb-4">
+            <label>Category: </label>
+            <select name="category" [(ngModel)]="post.category" class="form-control">
+              <option value="{{category.alias}}" *ngFor="let category of categories" >{{category.title}}</option>
+            </select>
+          </div>
+
+          <div class="posttitle mb-4">
             <label>Title: </label>
             <input name="title " type="text" [(ngModel)]="post.title" class="form-control" placeholder="Enter title"> 
           </div>
