@@ -12,11 +12,11 @@
                 <div class="metafooter">
                     <div class="wrapfooter">
                         <span class="meta-footer-thumb">
-                            <a href="author.html"><img class="author-thumb" src="{{post.author.imageUrl}}"
+                            <a href="#" [routerLink]="['/', 'author', post.author._id]"><img class="author-thumb" src="{{post.author.imageUrl}}"
                                     alt="{{post.author.name}}"></a>
                         </span>
                         <span class="author-meta">
-                            <span class="post-name"><a href="author.html">{{post.author.name}}</a></span><br />
+                            <span class="post-name"><a href="#" [routerLink]="['/', 'author', post.author._id]">{{post.author.name}}</a></span><br />
                             <span class="post-date">{{post.postDate}}</span>
                         </span>
                         <span class="post-read-more"><a href="#" (click)="addNewBookmark(post)" title="Save to bookmarks"><svg class="svgIcon-use"
