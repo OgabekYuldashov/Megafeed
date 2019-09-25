@@ -32,8 +32,6 @@ export class FollowingService {
 
   isFollowing(uid: string) {
     const activeUser = this.auth.getActiveUser();
-    console.log(uid);
-    console.log(activeUser);
     return activeUser.following.includes(uid);
   }
 }

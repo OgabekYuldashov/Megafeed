@@ -12,13 +12,13 @@ export class AuthorInfoComponent implements OnInit, OnChanges {
   constructor(private followingService: FollowingService) {
   }
 
-  async followUnfollow() {
+  followUnfollow() {
     if (this.followingService.isFollowing(this.user._id)) {
-      await this.followingService.unfollow(this.user._id);
-      this.updateFollowButtonName(true);
-    } else {
-      await this.followingService.follow(this.user._id);
       this.updateFollowButtonName(false);
+      this.followingService.unfollow(this.user._id);
+    } else {
+      this.updateFollowButtonName(true);
+      this.followingService.follow(this.user._id);
     }
   }
 
